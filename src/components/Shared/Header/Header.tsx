@@ -15,7 +15,7 @@ export default function App() {
     const { scrollY } = useScroll();
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        if (latest > Math.ceil(0)) {
+        if (latest > Math.ceil(100)) {
             setHalfWidth(true);
         } else {
             setHalfWidth(false);
@@ -94,7 +94,7 @@ export default function App() {
             <NavbarContent className="lg:hidden pr-3" >
                 <NavbarBrand className="flex ">
                     <Image src={logo} width={30} height={30} alt="logo" />
-                    <p className="font-bold text-xl text-coral-400 mt-1">Life Essence</p>
+                    <p className="font-bold text-xl text-coral-400 ">Life Essence</p>
 
                 </NavbarBrand>
             </NavbarContent>

@@ -4,6 +4,7 @@ import * as React from 'react';
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { HeroContent } from './HeroContent';
+import HeroOutSide from './HeroOutside';
 
 interface IAppProps {
 }
@@ -29,6 +30,8 @@ const Hero: React.FunctionComponent<IAppProps> = (props) => {
           </div>
         </div>
       </div>
+
+    <HeroOutSide />
 
 
     </section>

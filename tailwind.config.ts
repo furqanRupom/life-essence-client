@@ -12,7 +12,7 @@ const config: Config = {
       'coral-50': '#f2e4e0',
       'coral-300': '#f6b89e',
       'coral-400': '#f47f6a',
-      'coral-500': '#ff53a',
+      'coral-500': '#ff534a',
       'coral-600': '#ff5f56'
     },
     extend: {

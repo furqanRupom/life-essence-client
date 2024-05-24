@@ -26,7 +26,7 @@ export const HeroContent: React.FunctionComponent<IHeroContentProps> = ({ title,
                                 ...styleProps
                             }}
 
-                            className="absolute inset-x-0 bottom-0 text-white "
+                            className="absolute inset-x-0 -bottom-1  text-white "
                             viewBox="0 0 1160 163"
                         >
                             <path
@@ -49,7 +49,7 @@ export const HeroContent: React.FunctionComponent<IHeroContentProps> = ({ title,
                                         aria-label="Learn more about blood donation"
                                         className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 bg-coral-50 text-coral-400 mt-4"
                                     >
-                                        <Link className="mt-1" href="/donnors">Donate Now</Link>
+                                        <Link href="/donnors">Donate Now</Link>
                                         <ArrowRightSquare />
                                     </Button>
                                 </div>

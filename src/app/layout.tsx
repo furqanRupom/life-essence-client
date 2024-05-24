@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter,Cambay } from "next/font/google";
+import { Inter,Cambay,Montserrat,PT_Sans,Baloo_Bhai_2 } from "next/font/google";
 import "./globals.css";
 import Provider from "@/app/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
-const camby = Cambay({subsets:['latin'],weight:[
+const camby = Baloo_Bhai_2({subsets:['latin'],weight:[
   '400'
 ]})
 

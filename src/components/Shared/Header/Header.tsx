@@ -2,100 +2,176 @@
 import React from "react";
 import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem,DropdownTrigger,Dropdown,DropdownItem,DropdownMenu, Avatar} from "@nextui-org/react";
 import { Link,Button } from "@nextui-org/react";
-import { ListTree, X } from "lucide-react";
+import { Contact, HandHelping, Home, ListMusic, ListTree, Newspaper, X } from "lucide-react";
 import logo from "@/assets/logo/blood-svgrepo-com.png"
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
+import { useScroll, useMotionValueEvent, motion } from "framer-motion"
 
 export default function App() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [halfWidth, setHalfWidth] =React.useState<boolean>(false);
+
+    const { scrollY } = useScroll();
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        if (latest > Math.ceil(0)) {
+            setHalfWidth(true);
+        } else {
+            setHalfWidth(false);
+        }
+
+    })
     const menuItems = [
-        "Profile",
-        "Dashboard",
-        "Activity",
-        "Analytics",
-        "System",
-        "Deployments",
-        "My Settings",
-        "Team Settings",
-        "Help & Feedback",
-        "Log Out",
+        {
+            name:"home",
+            routes:"/",
+            icon:Home
+        },
+        {
+            name: "about",
+            routes: "/about",
+            icon:ListMusic
+        },
+         {
+            name: "donnors",
+            routes: "/donnors",
+            icon:HandHelping
+        },
+        {
+            name: "news",
+            routes: "/news",
+            icon:Newspaper
+        },
+        {
+            name: "contact",
+            routes: "/contact",
+            icon:Contact
+        }
+    ];
+    const forLargerDevicesLeftSideMeunu = [
+        {
+            name: "home",
+            routes: "/",
+            icon: Home
+        },
+        {
+            name: "about",
+            routes: "/about",
+            icon: ListMusic
+        },
+        {
+            name: "donnors",
+            routes: "/donnors",
+            icon: HandHelping
+        },
+       
     ];
 
+    const forLargerDevicesRightSideMenu = [
+        {
+            name: "news",
+            routes: "/news",
+            icon: Newspaper
+        },
+        {
+            name: "contact",
+            routes: "/contact",
+            icon: Contact
+        }
+    ]
+
+    const pathname = usePathname();
+ 
+
+    
+
     return (
-        <Navbar className="lg:py-3" position="sticky" isMenuOpen={isMenuOpen}
-            onMenuOpenChange={setIsMenuOpen} isBordered>
-            <NavbarContent className="sm:hidden" justify="start">
-                <button className="text-coral-400 text-xl" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                    {
-                        isMenuOpen ? <X /> : <ListTree />
-                    }
-                </button>
+        <Navbar className={`py-3 lg:py-2  fixed   ${halfWidth ? "max-w-5xl mx-auto lg:my-10 lg:rounded-3xl  duration-500 transition-all" : "duration-500 bg-default-50 transition-all "}`}  isMenuOpen={isMenuOpen}
+            onMenuOpenChange={setIsMenuOpen} isBordered disableAnimation>
 
 
-            </NavbarContent>
+            <NavbarContent className="lg:hidden pr-3" >
+                <NavbarBrand className="flex ">
+                    <Image src={logo} width={30} height={30} alt="logo" />
+                    <p className="font-bold text-xl text-coral-400 mt-1">Life Essence</p>
 
-            <NavbarContent className="sm:hidden pr-3" justify="center">
-                <NavbarBrand className="flex flex-col">
-                    <Image src={logo} width={20} height={20} alt="logo" />
-                    <p className="font-bold text-lg text-coral-400">Life Essence</p>
                 </NavbarBrand>
             </NavbarContent>
-
-            <NavbarContent className="hidden sm:flex gap-4" justify="start">
-               
-                <NavbarItem>
-                    <Link color="foreground" className=" text-lg" href="#">
-                     Home
-                    </Link>
-                </NavbarItem>
-                <NavbarItem >
-                    <Link href="#" color="foreground" className=" text-lg">
-                        About
-                    </Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Link color="foreground" className=" text-lg" href="#">
-                        Donors
-                    </Link>
-                </NavbarItem>
-
-
             
+           
+
+
+            <NavbarContent className="hidden lg:flex gap-5" justify="start" >
+                {/* larger  device left side menu */}
+
+                {
+                    forLargerDevicesLeftSideMeunu.map((item) => <NavbarItem  isActive={pathname === item.routes} key={item.routes}>
+                        <Link className={`text-lg capitalize text-default-600 ${pathname === item.routes ? "text-coral-400 ":""}`}  href={item.routes}>{item.name}</Link>
+                    </NavbarItem>)
+
+                }
+       
             </NavbarContent>
-            <NavbarContent className="hidden sm:block">
-                <NavbarBrand className="flex flex-col">
-                    <Image src={logo} width={20} height={20} alt="logo" />
-                    <p  className="font-extrabold text-2xl text-coral-400  ">Life Essence</p>
+            <NavbarContent  justify="center" className="hidden lg:block">
+                <NavbarBrand className="flex mt-2">
+                    <Image src={logo} width={30} height={30} alt="logo" />
+                    <p  className="font-extrabold text-3xl text-coral-400  mt-2">Life Essence</p>
                 </NavbarBrand>
             </NavbarContent>
 
             <NavbarContent justify="end">
+                {
+                    forLargerDevicesRightSideMenu.map((item) => <NavbarItem className="hidden lg:block" isActive={pathname === item.routes} key={item.routes}>
+                        <Link className={`text-lg capitalize text-default-600 ${pathname === item.routes ? "text-coral-400 " : ""}`} href={item.routes}>{item.name}</Link>
+                    </NavbarItem>)
+
+                }
+                
            
                 <NavbarItem>
-                    <Button size="lg" as={Link} className="bg-coral-50 tex-lg text-coral-400 font-bold" href="#" variant="flat">
+                    {/* larger  device left side menu */}
+
+                  
+                    <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="#" variant="flat">
                         Sign Up
                     </Button>
+                 
                 </NavbarItem>
-            </NavbarContent>
 
-            <NavbarMenu>
+                <NavbarItem>
+                    <button className="text-coral-400 lg:hidden mt-1" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                        {
+                            isMenuOpen ? <X width={30} height={30} /> : <ListTree width={30} height={30} />
+                        }
+                    </button>
+                </NavbarItem>
+               
+            </NavbarContent>
+       
+
+            <NavbarMenu className="py-8">
                 {menuItems.map((item, index) => (
-                    <NavbarMenuItem key={`${item}-${index}`}>
+                    <NavbarMenuItem className="items-center justify-center gap-3 "  isActive={pathname === item.routes} key={`${item.routes}-${index}`}>
+
+
+
+                        <div className={`flex items-center justify-center gap-3 ${pathname === item.routes ? "text-coral-400" : ""}`}>
+                            <small> <item.icon></item.icon></small>
                         <Link
-                            className="w-full"
-                            color={
-                                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
-                            }
-                            href="#"
+                                className={`w-full text-xl text-default-600 mt-1  ${pathname === item.routes ? "text-coral-400" : ""}`}
+                            
+                            href={item.routes}
                             size="lg"
                         >
-                            {item}
+                            {item.name}
                         </Link>
+
+                       </div>
                     </NavbarMenuItem>
                 ))}
             </NavbarMenu>
-            <Dropdown placement="bottom-end">
+            {/* <Dropdown placement="bottom-end">
                 <DropdownTrigger>
                     <Avatar
                         isBordered
@@ -122,7 +198,7 @@ export default function App() {
                         Log Out
                     </DropdownItem>
                 </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
         </Navbar>
     );
 }

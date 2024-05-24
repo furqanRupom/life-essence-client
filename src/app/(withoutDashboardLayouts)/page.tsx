@@ -1,9 +1,12 @@
 "use client";
 
+import Hero from "@/components/HomePage/Hero/Hero";
+
 export default function Home() {
   return (
   <>
-      <h3 className="">Life Essence</h3>
+      <Hero />
+
   </>
 
   );

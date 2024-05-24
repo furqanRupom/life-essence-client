@@ -13,7 +13,7 @@ interface IHeroContentProps {
 
 export const HeroContent: React.FunctionComponent<IHeroContentProps> = ({ title, description, backgroundImage,styleProps }) => {
     return (
-        <div className="h-[40000px] py-14">
+        <div className=" py-14">
                 <div className="relative">
                     <img
                         src={backgroundImage}

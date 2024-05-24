@@ -87,7 +87,7 @@ export default function App() {
     
 
     return (
-        <Navbar className={`py-3 lg:py-2  fixed   ${halfWidth ? "max-w-5xl mx-auto lg:my-10 lg:rounded-3xl  duration-500 transition-all" : "duration-500 bg-default-50 transition-all "}`}  isMenuOpen={isMenuOpen}
+        <Navbar className={`py-3 lg:py-2  fixed   ${halfWidth ? "max-w-5xl mx-auto lg:my-10 lg:rounded-3xl  duration-500 transition-all bg-default-50 lg:bg-transparent" : "duration-500 bg-default-50 transition-all "}`}  isMenuOpen={isMenuOpen}
             onMenuOpenChange={setIsMenuOpen} isBordered disableAnimation>
 
 
@@ -150,7 +150,7 @@ export default function App() {
             </NavbarContent>
        
 
-            <NavbarMenu className="py-8">
+            <NavbarMenu className="py-8 bg-default-50">
                 {menuItems.map((item, index) => (
                     <NavbarMenuItem className="items-center justify-center gap-3 "  isActive={pathname === item.routes} key={`${item.routes}-${index}`}>
 

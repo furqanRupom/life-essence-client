@@ -24,7 +24,7 @@ const WelcomeSection: React.FunctionComponent<IWelcomeSectionProps> = (props) =>
                             Donors Organization
                         </h2>
                         <p className="pr-5 mb-5 text-base text-default-600 md:text-lg">
-                            Join us in our mission to save lives by donating blood. Our organization is dedicated to providing safe and reliable blood donations to those in need. Whether you're a first-time donor or a seasoned one, your contribution makes a significant impact. Together, we can help people in emergencies, support medical treatments, and contribute to a healthier community.
+                            Join us in our mission to save lives by donating blood. Our organization is dedicated to providing safe and reliable blood donations to those in need. Whether you are a first-time donor or a seasoned one  your contribution makes a significant impact. Together  we can help people in emergencies  support medical treatments  and contribute to a healthier community.
                         </p>
                         <div className="flex items-center">
                            <Button className='text-coral-400 bg-coral-50 text-xl'><Link href="/donnors">Donate Now</Link></Button>

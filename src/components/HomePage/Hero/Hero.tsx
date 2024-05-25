@@ -21,7 +21,7 @@ const Hero: React.FunctionComponent<IAppProps> = (props) => {
 
           </div>
           <div className="embla__slide">
-            <HeroContent styleProps={{
+            <HeroContent isRowReverse={true} styleProps={{
               transform:"scaleX(-1)"
             }} title='Together We Save Lives' description=' At Life Essence we believe in the power of community. By donating blood you are helping to ensure that hospitals have the supplies they need. Together, we can make a life-saving impact.' backgroundImage='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwzyDD6_aceQIG22GCl9V55ip_4IBtNuuCZp7froLShxYXhFP0JRN4tAA0YdQnhi6d2uI&usqp=CAU' />
           </div>

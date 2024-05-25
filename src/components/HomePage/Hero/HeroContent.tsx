@@ -63,7 +63,7 @@ export const HeroContent: React.FunctionComponent<IHeroContentProps> = ({ title,
                                             Donating blood saves lives. Your contribution can make a difference in emergency situations and for those with chronic illnesses. Learn more about the impact of your donation.
                                         </p>
                                         <div className="mt-4">
-                                            <Button className="bg-coral-300 font-semibold text-default-500">
+                                            <Button className="bg-coral-50 font-semibold text-coral-500 hover:bg-default-50 duration-200">
                                                 <Link href="/help">For Help</Link>
                                             </Button>
                                         </div>

@@ -3,12 +3,12 @@ import { Mail, Heart } from 'lucide-react';
 
 const NewsletterSection: React.FC = () => {
     return (
-        <div className="bg-coral-300 bg-opacity-25 relative py-10 my-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto rounded-3xl">
-            <div className=" grid  lg:grid-cols-2 items-center mx-auto text-center ">
+        <div className="bg-coral-300 bg-opacity-25 relative  py-10 my-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-8  md:mx-auto rounded-3xl">
+            <div className=" grid  lg:grid-cols-2 items-center  text-center ">
                 <div className='lg:text-left'>
 
                 
-                <h2 className=" text-3xl leading-9 font-extrabold text-gray-900 sm:text-3xl sm:leading-10">
+                <h2 className=" text-2xl md:text-3xl leading-9 font-extrabold text-gray-900 sm:text-3xl sm:leading-10">
                     Join Our Life-Saving Community
                 </h2>
                 <p className="mt-3 text-lg leading-6 text-gray-600">

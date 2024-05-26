@@ -134,7 +134,7 @@ export default function App() {
                     {/* larger  device left side menu */}
 
                   
-                    <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="#" variant="flat">
+                    <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="/signup" variant="flat">
                         Sign Up
                     </Button>
                  

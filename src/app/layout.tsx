@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter,Cambay,Montserrat,PT_Sans,Baloo_Bhai_2 } from "next/font/google";
 import "./globals.css";
 import Provider from "./provider/Providers";
+import { Toaster } from "sonner";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,17 @@ export default function RootLayout({
       <body className={camby.className}>
        <Provider>
           {children}
+
+          <Toaster  position="top-center" toastOptions={{
+            style: {
+              border: '1px solid transparent'
+            },
+            classNames: {
+              toast: 'bg-coral-50',
+              title: 'text-coral-400 text-lg capitalize ',
+              icon: 'text-coral-400 text-xl',
+            }
+          }} />
        </Provider>
         </body>
     </html>

@@ -1,3 +1,4 @@
+import Title from "@/components/reusable/Title";
 import ServiceCard from "./ServicesCard";
 
 const ServicesSection: React.FunctionComponent = () => {
@@ -35,10 +36,7 @@ const ServicesSection: React.FunctionComponent = () => {
     return (
         <section className="py-16 bg-white">
             <div className="container mx-auto px-4">
-                <div className="mb-12 text-center">
-                    <h3 className="text-coral-400 font-semibold">WHAT WE DO</h3>
-                    <h2 className="text-4xl font-bold text-gray-900">Our Best Services</h2>
-                </div>
+              <Title firstTitle="What we do" secondTitle="our best services" />
 
 
                 {serviceCards.map((service, index) => (

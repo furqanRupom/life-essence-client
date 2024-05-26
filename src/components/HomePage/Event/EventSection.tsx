@@ -1,6 +1,7 @@
 import React from 'react';
 import EventCard from './EventCard';
 import { Button } from '@nextui-org/react';
+import Title from '@/components/reusable/Title';
 
 const events = [
     {
@@ -34,7 +35,7 @@ const EventSection: React.FC = () => {
     return (
         <section className="bg-gray-100 py-8">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-semibold text-center mb-8">Blood Donation Event</h2>
+                <Title firstTitle='Event' secondTitle='Blood donation event' />
                 <div className="flex flex-wrap justify-center">
                     {events.map((event, index) => (
                         <EventCard key={index} {...event} />

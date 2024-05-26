@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem,DropdownTrigger,Dropdown,DropdownItem,DropdownMenu, Avatar} from "@nextui-org/react";
-import { Link,Button } from "@nextui-org/react";
-import { Contact, HandHelping, Home, ListMusic, ListTree, Newspaper, X } from "lucide-react";
+import {Button } from "@nextui-org/react";
+import Link from "next/link";
+import { Contact, HandHelping, Home, ListMusic, ListTree, Newspaper, X ,Group} from "lucide-react";
 import logo from "@/assets/logo/blood-svgrepo-com.png"
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -24,27 +25,27 @@ export default function App() {
     })
     const menuItems = [
         {
-            name:"home",
+            name:"Home",
             routes:"/",
             icon:Home
         },
         {
-            name: "about",
+            name: "About",
             routes: "/about",
             icon:ListMusic
         },
          {
-            name: "donnors",
+            name: "Donnors",
             routes: "/donnors",
             icon:HandHelping
         },
         {
-            name: "news",
-            routes: "/news",
-            icon:Newspaper
+            name: "Campaign",
+            routes: "/campaign",
+            icon: Group
         },
         {
-            name: "contact",
+            name: "Contact",
             routes: "/contact",
             icon:Contact
         }
@@ -70,9 +71,9 @@ export default function App() {
 
     const forLargerDevicesRightSideMenu = [
         {
-            name: "news",
-            routes: "/news",
-            icon: Newspaper
+            name: "Campaign",
+            routes: "/campaign",
+            icon: Group
         },
         {
             name: "contact",
@@ -162,7 +163,7 @@ export default function App() {
                                 className={`w-full text-xl text-default-600 mt-1  ${pathname === item.routes ? "text-coral-400" : ""}`}
                             
                             href={item.routes}
-                            size="lg"
+                          
                         >
                             {item.name}
                         </Link>

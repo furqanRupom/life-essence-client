@@ -2,6 +2,7 @@
 import * as React from 'react';
 import InfoCard from './InfoCard';
 import { FileQuestion, HelpCircle, PaintBucket } from 'lucide-react';
+import Title from '@/components/reusable/Title';
 
 
 
@@ -9,6 +10,7 @@ const InfoSection: React.FunctionComponent = () => {
     return (
         <section className="py-16 bg-gray-100 max-w-7xl mx-auto">
             <div className="container mx-auto px-4">
+                <Title firstTitle='Articles' secondTitle='Some Essentials Articles' />
                 <div className="grid gap-8 lg:grid-cols-3">
                     <InfoCard
                         title="Become a Donor"

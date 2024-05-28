@@ -11,7 +11,7 @@ import { JwtPayloadWithRole } from "@/interfaces/interfaces";
 
 const Sidebar: React.FunctionComponent = () => {
     const user = decodeToken() as JwtPayloadWithRole;
-    const sidebarMenus = SidebarGenerator(user?.role);
+    const sidebarMenus = SidebarGenerator(user?.role || "USER");
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSidebar = () => {

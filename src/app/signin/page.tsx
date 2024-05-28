@@ -7,6 +7,7 @@ import { BloodGroups, authKey, donateOptions } from '@/constants/constant';
 import { useLoginMutation } from '@/redux/api/userApi';
 import { Button, Spacer } from '@nextui-org/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -16,12 +17,14 @@ interface ISignUpPageProps {
 
 const SignIn: React.FunctionComponent<ISignUpPageProps> = (props) => {
   const [userLogin] = useLoginMutation();
+  const router = useRouter();
   const handleRegisterSubmit = async (data: FieldValues) => {
     try {
       const response = await userLogin(data).unwrap();
       if(response.data.id){
         toast.success(response.message)
         localStorage.setItem(authKey,response.data.accessToken);
+        router.push('/dashboard')
       }
       
     } catch (error:any) {

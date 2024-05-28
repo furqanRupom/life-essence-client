@@ -132,6 +132,7 @@ export default function App() {
                     </NavbarItem>)
 
                 }
+                   
                 
            
                 <NavbarItem>
@@ -139,9 +140,9 @@ export default function App() {
 
                   
                    {
-                        !loggedIn ? <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="/signup" variant="flat">
+                        !loggedIn && <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="/signup" variant="flat">
                             Sign Up
-                        </Button> : <ProfileBadge />
+                        </Button> 
                    }
                  
                 </NavbarItem>
@@ -157,12 +158,9 @@ export default function App() {
             </NavbarContent>
        
 
-            <NavbarMenu className="py-8 bg-default-50">
+            <NavbarMenu className="py-8 bg-default-50  h-1/2 rounded-2xl">
                 {menuItems.map((item, index) => (
-                    <NavbarMenuItem className="items-center justify-center gap-3 "  isActive={pathname === item.routes} key={`${item.routes}-${index}`}>
-
-
-
+                    <NavbarMenuItem className="items-center  flex my-1 "  isActive={pathname === item.routes} key={`${item.routes}-${index}`}>
                         <div className={`flex items-center justify-center gap-3 ${pathname === item.routes ? "text-coral-400" : ""}`}>
                             <small> <item.icon></item.icon></small>
                         <Link
@@ -173,11 +171,14 @@ export default function App() {
                         >
                             {item.name}
                         </Link>
-
                        </div>
                     </NavbarMenuItem>
                 ))}
             </NavbarMenu>
+        
+        {
+            loggedIn && <ProfileBadge />
+        }
         
         </Navbar>
     );

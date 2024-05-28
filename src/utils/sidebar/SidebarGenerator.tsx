@@ -1,12 +1,18 @@
-import { HandCoins, Library, Shapes, SquareMousePointer, User, Users } from "lucide-react";
+import { HandCoins, Library, LucideProps, Settings, Shapes, SquareMousePointer, User, Users } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export type Role = "ADMIN" | "USER";
+const  userRole  = {
+    ADMIN:"admin",
+    USER:"user",
+}
 
-export const SidebarGenerator = (role: Role) => {
-    let SidebarLinks = [];
+export const SidebarGenerator = (values: Role) => {
+    const role =  values.toLowerCase();
+    let SidebarLinks: { name: string; route: string; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; }[] = [];
 
     switch (role) {
-        case 'ADMIN':
+        case userRole.ADMIN:
             SidebarLinks = [
                 {
                     name: "Dashboard",
@@ -26,7 +32,7 @@ export const SidebarGenerator = (role: Role) => {
             ];
             break;
 
-        case 'USER':
+        case userRole.USER:
             SidebarLinks = [
                 {
                     name: "Dashboard",
@@ -47,13 +53,21 @@ export const SidebarGenerator = (role: Role) => {
             break;
 
         default:
-            SidebarLinks.push({
-                name: "Profile",
-                route: `/${role}/profile`,
-                icon: User
-            });
             break;
     }
 
-    return SidebarLinks; // Ensure SidebarLinks is returned
+    SidebarLinks.push(
+        {
+            name: "Profile",
+            route: `/${role}/profile`,
+            icon: User
+        },
+        {
+            name: "Settings",
+            route: `/${role}/settings`,
+            icon: Settings
+        }
+    );
+
+    return SidebarLinks;
 };

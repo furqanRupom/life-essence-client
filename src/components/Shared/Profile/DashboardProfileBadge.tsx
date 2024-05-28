@@ -9,40 +9,30 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 interface IProfileBadgeProps {
-    
- }
+  
+}
 
-const ProfileBadge: React.FunctionComponent<IProfileBadgeProps> = (props) => {
+const DashboardProfileBadge: React.FunctionComponent<IProfileBadgeProps> = () => {
     const router = useRouter();
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         localStorage.removeItem(authKey);
         toast.success("user logout sucessfully")
         router.push('/signup')
     }
     const user = decodeToken() as JwtPayloadWithRole;
     const role = user?.role?.toLocaleLowerCase()
-    const menus = [
-        {
-            name: "Profile",
-            route: `/${user.role}/profile`
-        },
-        {
-            name: "Dashboard",
-            route: "/dashboard"
-        }
-    ];
+
 
     return (
         <Dropdown>
             <DropdownTrigger>
                 <Avatar
-                    isBordered
+                
                     as="button"
                     className="transition-transform"
-                    color="danger"
                     name="Jason Hughes"
-                    size="sm"
+                    size="md"
                     src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
                 />
             </DropdownTrigger>
@@ -52,14 +42,12 @@ const ProfileBadge: React.FunctionComponent<IProfileBadgeProps> = (props) => {
                     <p className="font-semibold">{user?.email}</p>
                 </DropdownItem>
 
-
-                <DropdownItem key="profile">
-                   <Link href="/dashboard/profile">Profile</Link>
+                <DropdownItem key="Home">
+                    <Link href="/">Home</Link>
                 </DropdownItem>
-                    <DropdownItem key="dashboard" >
-                        <Link href='/dashboard'>Dashboard</Link>
-                    </DropdownItem>
-                
+                <DropdownItem key="profile">
+                    <Link href="/dashboard/profile">Profile</Link>
+                </DropdownItem>
                 <DropdownItem onClick={() => handleLogout()} key="logout" color="danger">
                     Log Out
                 </DropdownItem>
@@ -68,4 +56,4 @@ const ProfileBadge: React.FunctionComponent<IProfileBadgeProps> = (props) => {
     );
 };
 
-export default ProfileBadge;
+export default DashboardProfileBadge;

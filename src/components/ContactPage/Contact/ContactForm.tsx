@@ -23,6 +23,7 @@ const ContactForm = () => {
                                     placeholder="Enter your first name"
                                     fullWidth
                                     required
+                                    size="sm"
                                      variant='faded'
                                    
                                 />
@@ -33,6 +34,7 @@ const ContactForm = () => {
                                     placeholder="Enter your last name"
                                     fullWidth
                                     required
+                                    size="sm"
                                      variant='faded'
                                 />
                             </div>
@@ -44,6 +46,7 @@ const ContactForm = () => {
                                 placeholder="Enter your email"
                                 fullWidth
                                 required
+                                size="sm"
                                  variant='faded'
                             />
                             <Input   style={{
@@ -53,6 +56,7 @@ const ContactForm = () => {
                                 placeholder="Enter subject"
                                 fullWidth
                                 required
+                                size="sm"
                                  variant='faded'
                             />
                             <Textarea style={{
@@ -62,6 +66,7 @@ const ContactForm = () => {
                                 placeholder="Enter your message"
                                 fullWidth
                                 required
+                                size="sm"
                                  variant='faded'
                             />
                             <Button  className="w-full bg-coral-50 text-coral-400 text-xl font-semibold ">

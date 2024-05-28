@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Inter,Cambay,Montserrat,PT_Sans,Baloo_Bhai_2 } from "next/font/google";
+import { Inter, Cambay, Montserrat, PT_Sans, Baloo_Bhai_2 } from "next/font/google";
 import "./globals.css";
-import Provider from "./provider/Providers";
+import EssenceProvider from "./provider/Providers";
 import { Toaster } from "sonner";
 
 
 const inter = Inter({ subsets: ["latin"] });
-const camby = Baloo_Bhai_2({subsets:['latin'],weight:[
-  '400'
-]})
+const camby = Baloo_Bhai_2({
+  subsets: ['latin'], weight: [
+    '400'
+  ]
+})
 
 export const metadata: Metadata = {
   title: "Life Essence | Home",
@@ -23,10 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={camby.className}>
-       <Provider>
+        <EssenceProvider>
           {children}
 
-          <Toaster  position="top-center" toastOptions={{
+          <Toaster position="top-center" toastOptions={{
             style: {
               border: '1px solid transparent'
             },
@@ -36,8 +38,8 @@ export default function RootLayout({
               icon: 'text-coral-400 text-xl',
             }
           }} />
-       </Provider>
-        </body>
+        </EssenceProvider>
+      </body>
     </html>
   );
 }

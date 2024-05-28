@@ -24,6 +24,7 @@ const Feedback: React.FunctionComponent<IFeedbackProps> = (props) => {
                       placeholder="Enter your first name"
                       fullWidth
                       required
+                      size="sm"
                       variant='faded'
 
                   />
@@ -34,6 +35,7 @@ const Feedback: React.FunctionComponent<IFeedbackProps> = (props) => {
                       placeholder="Enter your last name"
                       fullWidth
                       required
+                      size="sm"
                       variant='faded'
                   />
               </div>
@@ -45,6 +47,7 @@ const Feedback: React.FunctionComponent<IFeedbackProps> = (props) => {
                   placeholder="Enter your email"
                   fullWidth
                   required
+                  size="sm"
                   variant='faded'
               />
               <Input style={{
@@ -54,6 +57,7 @@ const Feedback: React.FunctionComponent<IFeedbackProps> = (props) => {
                   placeholder="Enter subject"
                   fullWidth
                   required
+                  size="sm"
                   variant='faded'
               />
               <Textarea style={{
@@ -63,9 +67,10 @@ const Feedback: React.FunctionComponent<IFeedbackProps> = (props) => {
                   placeholder="Enter your message"
                   fullWidth
                   required
+                  size="sm"
                   variant='faded'
               />
-              <Button className="w-full bg-coral-50 text-coral-400 text-xl font-semibold ">
+            <Button size='lg' className="w-full bg-coral-50 text-coral-400 text-xl font-semibold ">
                   Sent Feedback
               </Button>
           </form>

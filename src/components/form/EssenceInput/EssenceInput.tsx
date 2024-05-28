@@ -17,9 +17,10 @@ interface IEssenceInputProps {
 const EssenceInput: React.FunctionComponent<IEssenceInputProps> = ({ name,size,type,  placeholder,styleProps,isRequired }) => {
   const { control } = useFormContext();
   return <Controller name={name} control={control} render={({ field }) => (
-    <Input style={{
+    <Input  style={{
       ...styleProps,
-      background:"transparent"
+      background:"transparent",
+      outline:"none"
     }} {...field} type={type || "text"} size={size} variant='faded' label={name} placeholder={placeholder} isRequired={isRequired}  />
   )} />
     ;

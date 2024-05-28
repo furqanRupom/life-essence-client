@@ -13,6 +13,7 @@ interface ICardProps {
 
 const SuperCard: React.FunctionComponent<ICardProps> = ({image,title,descrption,buttonText,isOrder,subTitle}) => {
   return <>
+  
       <div className='grid  lg:grid-cols-2 mx-12 lg:mx-0 items-center justify-items-center gap-10'>
           <div className={isOrder ? "order-2" : "order-none"}>
               <Image className={` lg:h-96 mr-auto ${isOrder ? "order-2" : "order-none"}`} src={`${image || "https://img.freepik.com/premium-photo/group-people-blood-donation-concept_1134-17446.jpg"}`} alt='about page image' />
@@ -24,7 +25,7 @@ const SuperCard: React.FunctionComponent<ICardProps> = ({image,title,descrption,
 
               <p className='text-md leading-relaxed'>{descrption || "At Life Essence, we're here for all Peoples. And although our life-giving role started 90 years ago with blood donations today we support more people in more ways than ever before."}</p>
 
-              <Button className='text-coral-400 bg-coral-50 mt-5 font-semibold text-lg py-2'>{buttonText || "Know who we are"} <ArrowRight /></Button>
+              <Button size='lg' className='text-coral-400 bg-coral-50 mt-5 font-semibold text-lg py-2'>{buttonText || "Know who we are"} <ArrowRight /></Button>
 
           </div>
       </div>

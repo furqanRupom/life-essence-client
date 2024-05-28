@@ -8,6 +8,8 @@ import logo from "@/assets/logo/blood-svgrepo-com.png"
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useScroll, useMotionValueEvent, motion } from "framer-motion"
+import { isLoggedIn } from "@/utils/auth/isLoggedIn";
+import ProfileBadge from "../Profile/ProfileBadge";
 
 export default function App() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -83,6 +85,8 @@ export default function App() {
     ]
 
     const pathname = usePathname();
+
+    const loggedIn = isLoggedIn();
  
 
     
@@ -134,9 +138,11 @@ export default function App() {
                     {/* larger  device left side menu */}
 
                   
-                    <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="/signup" variant="flat">
-                        Sign Up
-                    </Button>
+                   {
+                        !loggedIn ? <Button size="md" as={Link} className="bg-coral-50  text-lg text-coral-400 font-bold" href="/signup" variant="flat">
+                            Sign Up
+                        </Button> : <ProfileBadge />
+                   }
                  
                 </NavbarItem>
 
@@ -172,34 +178,7 @@ export default function App() {
                     </NavbarMenuItem>
                 ))}
             </NavbarMenu>
-            {/* <Dropdown placement="bottom-end">
-                <DropdownTrigger>
-                    <Avatar
-                        isBordered
-                        as="button"
-                        className="transition-transform"
-                        color="secondary"
-                        name="Jason Hughes"
-                        size="sm"
-                        src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-                    />
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Profile Actions" variant="flat">
-                    <DropdownItem key="profile" className="h-14 gap-2">
-                        <p className="font-semibold">Signed in as</p>
-                        <p className="font-semibold">zoey@example.com</p>
-                    </DropdownItem>
-                    <DropdownItem key="settings">My Settings</DropdownItem>
-                    <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                    <DropdownItem key="analytics">Analytics</DropdownItem>
-                    <DropdownItem key="system">System</DropdownItem>
-                    <DropdownItem key="configurations">Configurations</DropdownItem>
-                    <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-                    <DropdownItem key="logout" color="danger">
-                        Log Out
-                    </DropdownItem>
-                </DropdownMenu>
-            </Dropdown> */}
+        
         </Navbar>
     );
 }

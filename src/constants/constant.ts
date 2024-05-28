@@ -43,3 +43,4 @@ export const donateOptions =  [
         value:"No, not now"
     }
 ]
+export const authKey = "accessToken"

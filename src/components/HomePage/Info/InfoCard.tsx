@@ -1,5 +1,5 @@
 "use client";
-import { Button, Image } from '@nextui-org/react';
+import { Button, Card, Image } from '@nextui-org/react';
 import * as React from 'react';
 interface IInfoCardProps {
     title: string;
@@ -9,14 +9,14 @@ interface IInfoCardProps {
     icon: any;
 }
 
- const InfoCard: React.FunctionComponent<IInfoCardProps> = (info) => {
+const InfoCard: React.FunctionComponent<IInfoCardProps> = (info) => {
     return (
-        <div className="max-w-lg mx-auto overflow-hidden bg-white rounded-lg shadow-lg">
-            <Image className="w-[100%] h-64  lg:h-[280px]  object-cover" src={info.imageUrl} alt={info.title} />
+        <Card className="max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg">
+            <Image className="w-[100%]   lg:h-[280px]  object-cover" src={info.imageUrl} alt={info.title} />
             <div className="p-6">
                 <div className="flex items-center justify-center w-12 h-12 mb-4 text-white rounded-full bg-coral-50">
                     <info.icon className="text-coral-400"></info.icon>
-                   
+
                 </div>
                 <h2 className="mb-2 text-lg font-semibold text-gray-900">{info.title}</h2>
                 <p className="text-gray-700">{info.description}</p>
@@ -29,7 +29,7 @@ interface IInfoCardProps {
                     {info.buttonText}
                 </Button>
             </div>
-        </div>
+        </Card>
     );
 };
 

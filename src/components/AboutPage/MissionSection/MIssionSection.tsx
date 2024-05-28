@@ -11,7 +11,7 @@ const missionStatements = [
     {
         title: "Promote Voluntary Blood Donation",
         description: "Encourage and educate the community about the importance of voluntary blood donation. By providing accurate information and dispelling myths  we aim to increase the number of willing donors and ensure a steady supply of blood for those in need.",
-        imageUrl:"https://images.pexels.com/photos/12193105/pexels-photo-12193105.jpeg?auto=compress&cs=tinysrgb&w=600"
+        imageUrl:"https://t4.ftcdn.net/jpg/02/21/47/99/360_F_221479946_2yUmWRmVPBka6d4zcXbBhJbRra8WcpQV.jpg"
     },
     {
         title: "Facilitate Easy and Safe Donations",
@@ -29,10 +29,11 @@ const missionStatements = [
 const MissionSection: React.FunctionComponent<IMissionSectionProps> = (props) => {
   return <section className='max-w-7xl mx-auto mt-24'>
       <Title firstTitle='Our Mission at Life Essence' secondTitle='Explore our valuable mission' />
-
-      <SuperCard title='Be the Lifeline' subTitle='Your Simple Act Can Change Everything' descrption='Join us in our life-saving mission to ensure a steady supply of blood for those in need. Every donation you make can mean the difference between life and death for someone in an emergency undergoing surgery, or battling a chronic illness.' image='https://images.pexels.com/photos/6647175/pexels-photo-6647175.jpeg?auto=compress&cs=tinysrgb&w=600' buttonText='Join the mission' isOrder={true} />
-
-      <section className='mt-20 mb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 mx-8 lg:mx-0 '>
+     <div className='my-32'>
+          <SuperCard title='Be the Lifeline' subTitle='Your Simple Act Can Change Everything' descrption='Join us in our life-saving mission to ensure a steady supply of blood for those in need. Every donation you make can mean the difference between life and death for someone in an emergency undergoing surgery, or battling a chronic illness.' image='https://images.pexels.com/photos/6647175/pexels-photo-6647175.jpeg?auto=compress&cs=tinysrgb&w=600' buttonText='Join the mission' isOrder={true} />
+     </div>
+      <Title firstTitle="Some of Our Important Mission" secondTitle="Building a Better Future Together" />
+      <section className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-10 mx-8 lg:mx-0 '>
 
         {
             missionStatements.map((mission) => <InfoCard key={mission.title} title={mission.title} description={mission.description} icon={Shield} buttonText='Read more' imageUrl={mission.imageUrl} />)

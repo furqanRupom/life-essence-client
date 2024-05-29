@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import Chart, { Props } from "react-apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const state: Props["series"] = [
+const state =  [
   
     {
         name: "Blood Requests",
@@ -10,7 +11,7 @@ const state: Props["series"] = [
     },
 ];
 
-const options: Props["options"] = {
+const options = {
     chart: {
         type: "area",
         animations: {
@@ -87,6 +88,7 @@ export const BloodChart = () => {
     return (
         <div className="w-full z-20 bg-coral-50 bg-opacity-15 rounded-3xl p-3">
             <div id="chart">
+                {/* @ts-ignore */}
                 <Chart options={options} series={state} type="area" height={350} />
             </div>
         </div>

@@ -1,3 +1,4 @@
+"use client";
 import BloodBarChart from '@/components/dashboard/chart/user/BloodBarChart';
 import { BloodChart } from '@/components/dashboard/chart/user/BloodChart';
 import UserHomePage from '@/components/dashboard/pages/user/UserHome';

@@ -12,7 +12,7 @@ const  BreadcrumbsTitle:React.FunctionComponent<IRoutes> = ({routes}) =>  {
           
                 <Breadcrumbs  size="lg">
                    {
-                        routes.map((route) => <BreadcrumbItem>{route}</BreadcrumbItem>)
+                        routes.map((route) => <BreadcrumbItem key={route}>{route}</BreadcrumbItem>)
                    }
                
                 </Breadcrumbs>

@@ -21,12 +21,12 @@ export const SidebarGenerator = (values: Role) => {
                 },
                 {
                     name: "Blood management",
-                    route: `/${role}/blood-management`,
+                    route: `/dashboard/${role}/blood-management`,
                     icon: Library
                 },
                 {
                     name: "User management",
-                    route: `/${role}/user-management`,
+                    route: `/dashboard/${role}/user-management`,
                     icon: Users
                 }
             ];
@@ -41,12 +41,12 @@ export const SidebarGenerator = (values: Role) => {
                 },
                 {
                     name: "Blood Requests",
-                    route: `/${role}/blood-requests`,
+                    route: `/dashboard/${role}/blood-requests`,
                     icon: HandCoins
                 },
                 {
                     name: "Donation Requests",
-                    route: `/${role}/donation-requests`,
+                    route: `/dashboard/${role}/donation-requests`,
                     icon: SquareMousePointer
                 }
             ];

@@ -5,6 +5,7 @@ const userApi = baseApi.injectEndpoints({
         registration:build.mutation({
             query:(data) => {
             
+            
                 return {
                     url:"/register",
                     method:"POST",
@@ -14,10 +15,11 @@ const userApi = baseApi.injectEndpoints({
         }),
         login:build.mutation({
             query:(data) => {
+                console.log(data);
                 return {
                     url:"/login",
                     method:"POST",
-                    body:data
+                    data:data
                 }
             }
         })

@@ -6,3 +6,9 @@ export interface JwtPayloadWithRole extends JwtPayload {
     name:string;
     email:string;
 }
+
+export interface IMetaData {
+    page: number;
+    limit: number;
+    total: number
+}

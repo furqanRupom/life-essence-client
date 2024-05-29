@@ -2,8 +2,7 @@
 import * as React from 'react';
 import { BloodChart } from '../../chart/user/BloodChart';
 import BloodBarChart from '../../chart/user/BloodBarChart';
-import { Card, Progress, Spacer } from '@nextui-org/react';
-import { CalendarRange, Heart, TrainTrack } from 'lucide-react';
+import { Card } from '@nextui-org/react';
 import BloodDonationMetrics from '../../chart/user/ProgressChart';
 
 interface IUserHomePageProps { }

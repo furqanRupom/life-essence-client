@@ -5,12 +5,14 @@ import EssenceSelect from '@/components/form/EssenceSelect/EssenceSelect';
 import Title from '@/components/reusable/Title';
 import { BloodGroups, authKey, donateOptions } from '@/constants/constant';
 import { useLoginMutation, useRegistrationMutation } from '@/redux/api/userApi';
+import { setLocalStorage } from '@/utils/localStorage';
 import { Button, Spacer } from '@nextui-org/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
+import { setAccessToken } from '../services/actions/setAccessToken';
 
 interface ISignUpPageProps {
 }
@@ -31,17 +33,19 @@ const SignUpPage: React.FunctionComponent<ISignUpPageProps> = (props) => {
                 bloodDonate:values.bloodDonate
             }
             const response = await userRegistration(registerData).unwrap();
-            if (response.data.id) {
+            if (response) {
                 const loginUser = await userLogin({
-                    email:response.data.email,
+                    email:response.email,
                     password:registerData.password
                 }).unwrap()
-                localStorage.setItem(authKey,loginUser.data.accessToken)
+                localStorage.setItem(authKey,loginUser.accessToken)
                 if(loginUser){
-                    router.push('/dashboard')
+                    toast.success("user sign up  successfully")
+                    setLocalStorage(authKey, loginUser.accessToken);
+                    setAccessToken(loginUser.accessToken as string, {
+                        redirect: "/dashboard"
+                    })
                 }
-
-                toast.success(response.message)
             }
         } catch (error: any) {
             toast.error(error.message)

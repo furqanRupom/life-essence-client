@@ -3,9 +3,12 @@ import * as React from 'react';
 import { BloodChart } from '../../chart/user/BloodChart';
 import BloodBarChart from '../../chart/user/BloodBarChart';
 import { Card } from '@nextui-org/react';
-import BloodDonationMetrics from '../../chart/user/ProgressChart';
+import dynamic from 'next/dynamic';
 
 interface IUserHomePageProps { }
+
+const BloodDonationMetrics = dynamic(() => import("../../chart/user/ProgressChart"), { ssr: false });
+
 
 const UserHomePage: React.FunctionComponent<IUserHomePageProps> = (props) => {
     return (

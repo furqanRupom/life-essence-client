@@ -11,9 +11,7 @@ const camby = Baloo_Bhai_2({
   variable: "--font-baloo-bhai",
   weight: [
     '400',
-    '500',
-    '600',
-    '700'
+   
   ]
 })
 
@@ -29,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${camby.variable}`}>
+      <body className={`${camby.variable} font-baloo`}>
         <EssenceProvider>
           {children}
 

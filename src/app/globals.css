@@ -20,3 +20,6 @@ header{
   min-width: 0;
 }
 
+.font-baloo {
+    font-family: var(--font-baloo-bhai);
+}

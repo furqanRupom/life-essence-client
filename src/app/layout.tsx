@@ -7,8 +7,13 @@ import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 const camby = Baloo_Bhai_2({
-  subsets: ['latin'], weight: [
-    '400'
+  subsets: ['latin'],
+  variable: "--font-baloo-bhai",
+  weight: [
+    '400',
+    '500',
+    '600',
+    '700'
   ]
 })
 
@@ -24,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={camby.className}>
+      <body className={`${camby.variable}`}>
         <EssenceProvider>
           {children}
 
@@ -33,8 +38,8 @@ export default function RootLayout({
               border: '1px solid transparent'
             },
             classNames: {
-              toast: 'bg-coral-50',
-              title: 'text-coral-400 text-lg capitalize ',
+              toast: 'bg-coral-50 font-baloo',
+              title: 'text-coral-400 text-lg capitalize',
               icon: 'text-coral-400 text-xl',
             }
           }} />

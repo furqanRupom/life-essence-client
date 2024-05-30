@@ -13,34 +13,35 @@ import * as React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
 import { setAccessToken } from '../services/actions/setAccessToken';
+import { LoaderIcon } from 'lucide-react';
 
 interface ISignUpPageProps {
 }
 
 const SignUpPage: React.FunctionComponent<ISignUpPageProps> = (props) => {
-    const [userRegistration] = useRegistrationMutation();
+    const [userRegistration, { isLoading }] = useRegistrationMutation();
     const [userLogin] = useLoginMutation();
     const router = useRouter();
     const handleRegisterSubmit = async (values: FieldValues) => {
+        const toastId = toast.loading("Almost there, getting you signed up..")
         try {
-
             const registerData = {
-                name:values.name,
-                email:values.email,
-                password:values.password,
-                bloodType:values.bloodGroup,
-                location:values.location,
-                bloodDonate:values.bloodDonate
+                name: values.name,
+                email: values.email,
+                password: values.password,
+                bloodType: values.bloodGroup,
+                location: values.location,
+                bloodDonate: values.bloodDonate
             }
             const response = await userRegistration(registerData).unwrap();
             if (response) {
                 const loginUser = await userLogin({
-                    email:response.email,
-                    password:registerData.password
+                    email: response.email,
+                    password: registerData.password
                 }).unwrap()
-                localStorage.setItem(authKey,loginUser.accessToken)
-                if(loginUser){
-                    toast.success("user sign up  successfully")
+                localStorage.setItem(authKey, loginUser.accessToken)
+                if (loginUser) {
+                    toast.success("You're all set! Welcome to the team.", { id: toastId })
                     setLocalStorage(authKey, loginUser.accessToken);
                     setAccessToken(loginUser.accessToken as string, {
                         redirect: "/dashboard"
@@ -80,9 +81,7 @@ const SignUpPage: React.FunctionComponent<ISignUpPageProps> = (props) => {
 
             <p className='text-right'>Already have an account please <Link className='hover:underline text-coral-500' href="/signin">Sign In</Link></p>
             <Spacer y={2} />
-
-            <Button size='lg' className='bg-coral-50 text-coral-400 w-full py-3 fon-bold text-2xl' type='submit'>Sign Up</Button>
-
+            <Button spinner={<LoaderIcon className='animate-spin ' />} isLoading={isLoading} size='lg' className='bg-coral-50 text-coral-400 w-full py-3 fon-bold text-2xl' type='submit'>Sign Up</Button>
         </EssenceForm>
     </section>;
 };

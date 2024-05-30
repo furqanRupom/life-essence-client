@@ -59,12 +59,12 @@ export const SidebarGenerator = (values: Role) => {
     SidebarLinks.push(
         {
             name: "Profile",
-            route: `/${role}/profile`,
+            route: `/dashboard/profile`,
             icon: User
         },
         {
             name: "Settings",
-            route: `/${role}/settings`,
+            route: `/dashboard/settings`,
             icon: Settings
         }
     );

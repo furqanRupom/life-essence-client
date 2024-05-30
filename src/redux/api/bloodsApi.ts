@@ -10,10 +10,18 @@ const bloodsApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        donorRequest: build.query({
+            query: () => {
+                return {
+                    url: "/donor-request",
+                    method: "GET",
+                }
+            }
+        }),
      
         
     })
 })
 
 
-export const {useGetBloodRequetsQuery} = bloodsApi;
+export const {useGetBloodRequetsQuery,useDonorRequestQuery} = bloodsApi;

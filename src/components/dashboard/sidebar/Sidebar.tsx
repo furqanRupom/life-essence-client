@@ -21,6 +21,7 @@ const Sidebar: React.FunctionComponent<ISidebarProps> = ({ isSidebarOpen, setIsS
     const user = decodeToken() as JwtPayloadWithRole;
     const sidebarMenus = SidebarGenerator(user?.role || "user");
     const pathname = usePathname();
+    console.log(pathname)
 
     return (
         <div className="z-50 h-full min-h-screen  border border-coral-50">
@@ -39,9 +40,9 @@ const Sidebar: React.FunctionComponent<ISidebarProps> = ({ isSidebarOpen, setIsS
                         <motion.li
                             key={index}
                             whileTap={{ scale: 0.95 }}
-                            className={`hover:bg-coral-50 text-default-60 ${pathname === menu.route ? "bg-coral-50 text-coral-400" : ""} px-3 py-1 rounded-xl`}
+                            className={`hover:bg-coral-50  ${pathname == menu.route ? "bg-coral-50 text-coral-400" : ""} px-3 py-1 rounded-xl`}
                         >
-                            <Link href={menu.route} className="text-default-600 items-center gap-3 text-lg py-1 hover:text-blue-500 flex">
+                            <Link href={menu.route} className={`${pathname == menu.route ? " text-coral-400" : ""}  items-center gap-3 text-lg py-1  flex`}>
                                 <menu.icon className="w-6 h-6" />
                                 <h3 className="mt-1">{menu.name}</h3>
                             </Link>

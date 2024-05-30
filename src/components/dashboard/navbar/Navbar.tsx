@@ -44,9 +44,11 @@ interface ISidebarProps {
                 
                 <NavbarItem className={`flex items-center  space-x-2 '}`}>
                     <Popbar />
-                    <Button   isIconOnly className="bg-coral-50 text-coral-400">
-                        <MessageCircleMore size={25} />
-                    </Button>
+                    <Link href="/dashboard/chat">
+                        <Button isIconOnly className="bg-coral-50 text-coral-400">
+                            <MessageCircleMore size={25} />
+                        </Button>
+                    </Link>
                 </NavbarItem>
 
                 

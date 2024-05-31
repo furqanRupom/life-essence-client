@@ -4,6 +4,7 @@ import { useDonorRequestQuery, useGetBloodRequetsQuery } from "@/redux/api/blood
 import { Avatar, Chip, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
 import { DeleteIcon, EditIcon, EyeIcon } from "lucide-react";
 import { statusColorMap } from '../../blood-requests/components/BloodRequestTable';
+import NotFound from '@/components/notFound/notFound';
 interface IDonationRequestTableProps {
 }
 
@@ -98,6 +99,7 @@ const DonationRequestTable: React.FunctionComponent<IDonationRequestTableProps> 
                 </div>
 
         }
+        {donorRequets?.length == 0 ? <NotFound title='No donation request'/> :""}
     </>;
 };
 

@@ -25,7 +25,7 @@ const Banner: React.FunctionComponent<IBannerProps> = (props) => {
 
             <h1 className='text-3xl lg:text-5xl font-bold capitalize text-coral-50'>{props.title || pathname.split('/')[1]}</h1>
         
-        <h3 className='text-xl lg:text-2xl text-center text-coral-50'>home <span className='text-coral-400'>{pathname} {props.subTitle && `/${props.subTitle}`}</span></h3>
+        <h3 className='text-xl lg:text-2xl text-center text-coral-50'>home <span className='text-coral-400'>/{pathname.split('/')[1]}  {props.subTitle && `/${props.subTitle}`}</span></h3>
 
             </div>
   </section>;

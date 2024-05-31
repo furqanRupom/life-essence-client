@@ -2,12 +2,13 @@
 import Banner from '@/components/reusable/Banner';
 import { useDonorListQuery } from '@/redux/api/bloodsApi';
 import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Avatar, Badge, Input, Select, SelectItem, Chip, Spinner } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Divider,  Avatar, Badge, Input, Select, SelectItem, Chip, Spinner } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
 import { IDonor } from '@/interfaces/interfaces';
 import { IbloodGroup, makeBloodGroups } from '@/utils/bloodGroup/bloodGroup';
 import { Droplet, LoaderIcon, Search } from 'lucide-react';
 import { BloodGroups, availabilites } from '@/constants/constant';
+import Link from 'next/link';
 
 interface IDonorsPageProps { }
 
@@ -114,10 +115,8 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
                     <Divider />
                     <CardFooter className="p-4">
                       <Link
-                        isExternal
-                        showAnchorIcon
-                        href={`/donors/${donor.id}`}
-                        className="text-blue-500 hover:underline"
+                        href={`/donnors/${donor.id}`}
+                        className="text-coral-400 hover:underline"
                       >
                         View Full Profile
                       </Link>

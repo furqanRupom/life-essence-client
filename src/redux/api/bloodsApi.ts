@@ -28,7 +28,6 @@ const bloodsApi = baseApi.injectEndpoints({
                 params: args
             }),
             transformResponse: (response: any, meta: any) => {
-                console.log(meta)
 
                 return {
                     donnors: response,
@@ -37,8 +36,14 @@ const bloodsApi = baseApi.injectEndpoints({
             }
 
         }),
+        donorDetails : build.query({
+            query:(args) => ({
+                url:`/donor-details/${args.id}`,
+                method:"GET"
+            })
+        })
     })
 })
 
 
-export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery } = bloodsApi;
+export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery,useDonorDetailsQuery } = bloodsApi;

@@ -1,14 +1,16 @@
 import { baseApi } from "./baseApi";
 
 const bloodsApi = baseApi.injectEndpoints({
-    endpoints:(build) => ({
-        getBloodRequets:build.query({
-            query:() => {
+    endpoints: (build) => ({
+        getBloodRequets: build.query({
+            query: () => {
                 return {
-                    url:"/donation-request",
-                    method:"GET",
+                    url: "/donation-request",
+                    method: "GET",
                 }
-            }
+            },
+            providesTags:['user']
+            
         }),
         donorRequest: build.query({
             query: () => {
@@ -16,7 +18,8 @@ const bloodsApi = baseApi.injectEndpoints({
                     url: "/donor-request",
                     method: "GET",
                 }
-            }
+            },
+            providesTags: ['user']
         }),
         donorList: build.query({
             query: (args) => ({
@@ -24,18 +27,18 @@ const bloodsApi = baseApi.injectEndpoints({
                 method: "GET",
                 params: args
             }),
-            transformResponse:(response:any,meta:any) => {
+            transformResponse: (response: any, meta: any) => {
                 console.log(meta)
-               
+
                 return {
-                    donnors:response,
-                    meta:meta
+                    donnors: response,
+                    meta: meta
                 }
             }
-           
+
         }),
     })
 })
 
 
-export const {useGetBloodRequetsQuery,useDonorRequestQuery,useDonorListQuery} = bloodsApi;
+export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery } = bloodsApi;

@@ -1,7 +1,9 @@
 "use client";
+import NotFound from "@/components/notFound/notFound";
 import { useGetBloodRequetsQuery } from "@/redux/api/bloodsApi";
 import { Avatar, Chip, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, Tooltip } from "@nextui-org/react";
 import { DeleteIcon, EditIcon, EyeIcon } from "lucide-react";
+import * as React from 'react';
 
 export const columns = [
 
@@ -30,7 +32,6 @@ export const statusColorMap = {
     REJECTED: "danger",
 };
 
-import * as React from 'react';
 
 interface IBloodRequestTableProps {
 }
@@ -81,9 +82,12 @@ const BloodRequestTable: React.FunctionComponent<IBloodRequestTableProps> = (pro
         }
     };
     const { data: RequestByMe,isLoading } = useGetBloodRequetsQuery({});
-    console.log(RequestByMe)
+  
+   
     const transformedData = transformData(RequestByMe || []);
   return <>
+
+ 
    {
     isLoading ? <></> : 
 
@@ -103,12 +107,20 @@ const BloodRequestTable: React.FunctionComponent<IBloodRequestTableProps> = (pro
                                   {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
                               </TableRow>
                           )}
+
+                          
                       </TableBody>
+
+                  
+
+                      
                   </Table>
 
     </div>
               
    }
+      {RequestByMe?.length == 0 ? <NotFound title="No Blood Request " /> : null}
+
   </>;
 };
 

@@ -8,6 +8,8 @@ export const baseApi = createApi({
     baseQuery: axiosBaseQuery({
         baseUrl:"https://blood-donate-three.vercel.app/api"
     }),
-    endpoints: () => ({})
+    endpoints: () => ({}),
+    tagTypes:['user','donor']
+
 
 })

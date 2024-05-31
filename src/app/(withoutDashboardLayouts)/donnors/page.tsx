@@ -37,7 +37,6 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
   React.useEffect(() => {
     if (donors) setDonorsData(donors);
   }, [donors]);
-    console.log(donors)
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };

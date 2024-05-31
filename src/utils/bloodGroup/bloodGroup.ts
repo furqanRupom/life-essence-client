@@ -1,4 +1,4 @@
-type IbloodGroup = 'A_POSITIVE' | 'A_NEGATIVE' | 'AB_POSITIVE' | 'AB_NEGATIVE' | 'O_POSITIVE' | 'O_NEGATIVE' | 'B_POSITIVE' | 'B_NEGATIVE';
+export type IbloodGroup = 'A_POSITIVE' | 'A_NEGATIVE' | 'AB_POSITIVE' | 'AB_NEGATIVE' | 'O_POSITIVE' | 'O_NEGATIVE' | 'B_POSITIVE' | 'B_NEGATIVE';
 
 export const makeBloodGroups = (group: IbloodGroup): string => {
     let myGroups: string;

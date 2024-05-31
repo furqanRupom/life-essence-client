@@ -34,7 +34,8 @@ export const axiosBaseQuery =
                         "Content-Type": contentType || "application/json"
                     },
                 })
-                return { data: result.data }
+             // @ts-ignore
+                return { data: result.data,meta:result?.meta || {}} 
             } catch (axiosError) {
                 const err = axiosError as AxiosError
                 return {

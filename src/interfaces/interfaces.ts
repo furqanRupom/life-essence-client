@@ -12,3 +12,22 @@ export interface IMetaData {
     limit: number;
     total: number
 }
+export interface IDonor {
+    id: string;
+    name:string;
+    email: string;
+    location: string;
+    bloodType: string;
+    availability: string;
+    createdAt: string;
+    updatedAt: string;
+    profile: {
+        id: string;
+        userId: string;
+        bio: string;
+        age: number;
+        lastDonationDate: string;
+        createdAt: string;
+        updatedAt: string;
+    };
+}

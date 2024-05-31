@@ -43,4 +43,14 @@ export const donateOptions =  [
         value:"No, not now"
     }
 ]
+export const availabilites = [
+    {
+        name:"true",
+        value:"Available"
+    },
+    {
+        name: "false",
+        value: "Unavilable"
+    }
+]
 export const authKey = "accessToken"

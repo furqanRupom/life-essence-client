@@ -28,14 +28,15 @@ interface IBloodRequestPageProps {
 
 const BloodRequestPage: React.FunctionComponent<IBloodRequestPageProps> = (props) => {
     const router = useRouter();
+    const { data: profileData, isLoading: ProfileLoading } = useGetMyProfileQuery({});
+    const [donationRequest, { isLoading: requestLoading }] = useDonationRequestMutation();
     if(!isLoggedIn){
         router.push('/signin')
         return <></>
     }
 
     
-    const { data: profileData,isLoading:ProfileLoading } = useGetMyProfileQuery({});
-    const [donationRequest,{isLoading:requestLoading}] = useDonationRequestMutation();
+ 
 
     if(ProfileLoading){
         return <EssenceLoader />

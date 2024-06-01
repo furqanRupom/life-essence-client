@@ -10,18 +10,21 @@ interface IEssenceInputProps {
   size?: "sm" | "md" | "lg"
   type?:any;
   isRequired?:boolean;
+  defaultValues?:string;
+  isReadOnly?:boolean;
+  label?:string;
 
 
 }
 
-const EssenceInput: React.FunctionComponent<IEssenceInputProps> = ({ name,size,type,  placeholder,styleProps,isRequired }) => {
+const EssenceInput: React.FunctionComponent<IEssenceInputProps> = ({ name,size,type, label, placeholder,styleProps,isRequired,defaultValues,isReadOnly }) => {
   const { control } = useFormContext();
   return <Controller name={name} control={control} render={({ field }) => (
     <Input  style={{
       ...styleProps,
       background:"transparent",
       outline:"none"
-    }} {...field} type={type || "text"} size={size} variant='faded' label={name} placeholder={placeholder} isRequired={isRequired}  />
+    }} {...field} type={type || "text"}  isReadOnly={isReadOnly} size={size} variant='faded' label={label || name} placeholder={placeholder} isRequired={isRequired}  />
   )} />
     ;
 };

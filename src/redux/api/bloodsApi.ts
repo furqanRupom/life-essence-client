@@ -9,7 +9,7 @@ const bloodsApi = baseApi.injectEndpoints({
                     method: "GET",
                 }
             },
-            providesTags:['user']
+            providesTags:['user','donor']
             
         }),
         donorRequest: build.query({
@@ -19,7 +19,7 @@ const bloodsApi = baseApi.injectEndpoints({
                     method: "GET",
                 }
             },
-            providesTags: ['user']
+            providesTags: ['user','donor']
         }),
         donorList: build.query({
             query: (args) => ({
@@ -41,9 +41,17 @@ const bloodsApi = baseApi.injectEndpoints({
                 url:`/donor-details/${args.id}`,
                 method:"GET"
             })
-        })
+        }),
+         donationRequest: build.mutation({
+             query: (data) => ({
+                 url: "/donation-request",
+                 method: "POST",
+                 data
+             }),
+             invalidatesTags:['donor']
+         })
     })
 })
 
 
-export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery,useDonorDetailsQuery } = bloodsApi;
+export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery,useDonorDetailsQuery,useDonationRequestMutation } = bloodsApi;

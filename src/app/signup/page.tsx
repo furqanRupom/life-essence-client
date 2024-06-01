@@ -21,7 +21,6 @@ interface ISignUpPageProps {
 const SignUpPage: React.FunctionComponent<ISignUpPageProps> = (props) => {
     const [userRegistration, { isLoading }] = useRegistrationMutation();
     const [userLogin] = useLoginMutation();
-    const router = useRouter();
     const handleRegisterSubmit = async (values: FieldValues) => {
         const toastId = toast.loading("Almost there, getting you signed up..")
         try {

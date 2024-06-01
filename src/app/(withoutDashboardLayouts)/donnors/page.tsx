@@ -9,6 +9,7 @@ import { IbloodGroup, makeBloodGroups } from '@/utils/bloodGroup/bloodGroup';
 import { Droplet, LoaderIcon, Search } from 'lucide-react';
 import { BloodGroups, availabilites } from '@/constants/constant';
 import Link from 'next/link';
+import EssenceLoader from '@/components/Shared/Loader/Loader';
 
 interface IDonorsPageProps { }
 
@@ -138,9 +139,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
             </div>
           </>
         ) : (
-           <div className='flex items-center justify-center py-40'>
-           <LoaderIcon className='w-20 h-20 text-coral-400 animate-spin' />
-           </div>
+           <EssenceLoader />
         )}
 
        

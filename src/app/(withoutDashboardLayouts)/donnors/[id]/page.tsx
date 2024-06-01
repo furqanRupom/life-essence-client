@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { Avatar, Button, Chip } from '@nextui-org/react';
 import { IbloodGroup, makeBloodGroups } from '@/utils/bloodGroup/bloodGroup';
 import { BluetoothConnectedIcon, Droplet, LocateIcon, MailCheck, Phone, PhoneCall } from 'lucide-react';
+import Link from 'next/link';
+import EssenceLoader from '@/components/Shared/Loader/Loader';
 
 interface IDonorsDetailsPageProps {
     params: string
@@ -15,25 +17,23 @@ const DonorsDetailsPage: React.FunctionComponent<IDonorsDetailsPageProps> = ({ p
     const { data: details, isLoading, error } = useDonorDetailsQuery(params);
     const router = useRouter();
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
+  if(isLoading){
+    return <EssenceLoader />
+  }
 
     if (error || !details) {
         return <p>Error loading donor details or no details found</p>;
     }
 
-    const handleRequestBlood = () => {
-        router.push(`/request-blood/${params}`);
-    };
+  
 
     return (
-        <>
+        <section className='min-h-screen'>
             <Banner title='Donor Details' subTitle='donorDetails' />
-            <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg max-w-4xl mt-8">
-                <a href="/donors" className="text-gray-500 hover:text-gray-700 text-sm inline-block mb-4">
+            <div className="container  mx-auto p-6 bg-white rounded-lg shadow-lg max-w-4xl mt-8">
+                <Link href="/donors" className="text-gray-500 hover:text-gray-700 text-sm inline-block mb-4">
                     &lt; Back to all donors
-                </a>
+                </Link>
                 <div className="flex flex-col lg:flex-row  justify-center space-x-12">
                     <div className="flex flex-col items-center">
                         {details.image ? (
@@ -75,12 +75,14 @@ const DonorsDetailsPage: React.FunctionComponent<IDonorsDetailsPageProps> = ({ p
                     </div>
                 </div>
                 <div className='flex justify-center mt-16'>
-                    <Button size='lg' onClick={handleRequestBlood} className="bg-coral-50 text-coral-400 font-semibold hover:bg-coral-100 w-full">
-                        Request Blood
-                    </Button>
+                  <Link href={`/donnors/blood-request/${details.id}`}>
+                        <Button size='lg'  className="bg-coral-50 text-coral-400 font-semibold hover:bg-coral-100 w-full">
+                            Request Blood
+                        </Button>
+                  </Link>
                 </div>
             </div>
-        </>
+        </section>
     );
 };
 

@@ -10,16 +10,20 @@ interface IEssenceSelectProps {
     size?: "sm" | "md" | "lg"
     isRequired?: boolean;
     menuItems:any;
+    isReadOnly?:boolean;
     label?:string;
+  defaultValues?:string;
+    defaultName?:string;
 }
 
-const EssenceSelect: React.FunctionComponent<IEssenceSelectProps> = ({name,menuItems,placeholder,size,isRequired,label}) => {
+const EssenceSelect: React.FunctionComponent<IEssenceSelectProps> = ({ name, menuItems, placeholder, size, isRequired, label, isReadOnly, defaultValues, defaultName }) => {
     const {control} = useFormContext();
   return <Controller control={control} name={name} render={({field}) => (
-    <Select isRequired={isRequired} variant='faded' label={label} size={size} placeholder={placeholder} {...field}>
+    // @ts-ignore
+    <Select defaultSelectedKeys={[defaultValues] || 'all'} isRequired={isRequired} variant='faded' label={label || name} size={size} placeholder={placeholder} {...field}>
           {
             // @ts-ignore
-            menuItems.map((menu) => <SelectItem value={menu.name}  key={menu.name}>{menu.value}</SelectItem>)
+        menuItems.map((menu) => <SelectItem  isReadOnly={isReadOnly || false} value={ menu.name}  key={menu.name}>{menu.value}</SelectItem>)
           }
     </Select>
   )} />;

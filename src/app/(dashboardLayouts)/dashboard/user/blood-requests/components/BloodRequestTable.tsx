@@ -40,6 +40,7 @@ export const statusColorMap = {
 };
 
 
+
 interface IBloodRequestTableProps {
   
 }
@@ -126,14 +127,9 @@ const BloodRequestTable: React.FunctionComponent<IBloodRequestTableProps> = () =
                           )}
 
                       </TableBody>
-
-                      
-
-                  
-
                       
                   </Table>
-                  <BloodRequestModal requestData={donorDetails} title="Donor Details" onOpen={onOpen} isOpen={isOpen} onOpenChange={onOpenChange} />
+                  <BloodRequestModal  requestData={donorDetails} title="Donor Details" onOpen={onOpen} isOpen={isOpen} onOpenChange={onOpenChange} />
 
     </div>
               

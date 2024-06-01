@@ -54,3 +54,10 @@ export const availabilites = [
     }
 ]
 export const authKey = "accessToken"
+
+
+export const requestConstantStatus = {
+    pending: "PENDING",
+    approved: "APPROVED",
+    rejected: "REJECTED",
+};

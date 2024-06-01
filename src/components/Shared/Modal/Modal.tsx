@@ -27,9 +27,7 @@ const EssenceModal: React.FunctionComponent<IEssenceModalProps> = ({isOpen,onOpe
                         {children}
                     </ModalBody>
 
-                    <ModalFooter>
-                        <Button className='bg-coral-50 text-coral-400' onPress={onClose}>Close</Button>
-                    </ModalFooter>
+              
                     </>
                 )}
             </ModalContent>

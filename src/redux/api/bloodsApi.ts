@@ -49,9 +49,21 @@ const bloodsApi = baseApi.injectEndpoints({
                  data
              }),
              invalidatesTags:['donor']
-         })
+         }),
+        updateRequestStatus: build.mutation({
+            query: (args) => {
+             
+                return {
+                    url: `/donation-request/${args.id}`,
+                    method: "PUT",
+                    data: args.data
+                }
+            },
+            invalidatesTags: ['donor']
+        })
+
     })
 })
 
 
-export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery,useDonorDetailsQuery,useDonationRequestMutation } = bloodsApi;
+export const { useGetBloodRequetsQuery, useDonorRequestQuery, useDonorListQuery,useDonorDetailsQuery,useDonationRequestMutation ,useUpdateRequestStatusMutation} = bloodsApi;

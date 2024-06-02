@@ -4,20 +4,17 @@ import { useDropzone } from 'react-dropzone';
 import { Avatar, Button, useDisclosure } from '@nextui-org/react';
 import { Camera, CloudUpload, File } from 'lucide-react';
 import EssenceModal from '@/components/Shared/Modal/Modal';
-
 import { useGetMyProfileQuery, useUpdateProfileMutation } from '@/redux/api/userApi';
 import { toast } from 'sonner';
-import { config } from '@/config/config';
+import axios from 'axios';
 
 interface IImageUploadFormProps { }
 
 const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
     const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
     const [file, setFile] = useState<File | null>(null);
-    const [updateProfile]  = useUpdateProfileMutation()
-    const {data:profile,isLoading} = useGetMyProfileQuery({});
-  
-   
+    const [updateProfile] = useUpdateProfileMutation();
+    const { data: profile, isLoading } = useGetMyProfileQuery({});
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
@@ -34,50 +31,50 @@ const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-
     if (isLoading) {
-        return <></>
+        return <></>;
     }
 
     const handleFileUpload = async () => {
         if (!file) {
-            console.error("No file selected");
+            console.error('No file selected');
             return;
         }
 
         const data = new FormData();
-        data.append('image', file);
+        data.append('file', file);
 
         try {
-            const response = await fetch(`https://api.imgbb.com/1/upload?key=${config.api_key}`, {
-                method: "POST",
-                body: data,
+            const response = await axios.post('/api/upload', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
 
-            const uploadImage = await response.json();
+            const uploadImage = response.data;
 
-            const toastId = toast.loading('image upload on processing');
-           if(uploadImage?.data?.id){
-               const response = await updateProfile({ image: uploadImage?.data?.display_url }).unwrap();
-               if(response.id){
-                 toast.success('Image successfully uploaded !',{id:toastId});
-                 onClose();
-                 setFile(null)
-               }else{
-                   toast.error("Something went wrong !", { id: toastId });
-                   onClose();
-                   setFile(null)
-               }
-
-           }
+            const toastId = toast.loading('Image upload in process...');
+            if (uploadImage?.data?.id) {
+                const updateResponse = await updateProfile({ image: uploadImage?.data?.display_url }).unwrap();
+                if (updateResponse.id) {
+                    toast.success('Image successfully uploaded!', { id: toastId });
+                    onClose();
+                    setFile(null);
+                } else {
+                    toast.error('Something went wrong!', { id: toastId });
+                    onClose();
+                    setFile(null);
+                }
+            }
         } catch (error) {
-            console.error("Error uploading file:", error);
+            console.error('Error uploading file:', error);
+            toast.error('Error uploading file. Please try again later.');
         }
     };
 
     return (
         <div className="flex flex-col items-center mb-6">
-            <Avatar src={profile?.image || ""}  className="w-32 h-32 rounded-full ring ring-coral-400 mb-4" alt="Profile" />
+            <Avatar src={profile?.image || ''} className="w-32 h-32 rounded-full ring ring-coral-400 mb-4" alt="Profile" />
             <Button onPress={onOpen} startContent={<Camera />} className='bg-coral-400 font-bold text-coral-50'>Update Image</Button>
 
             <EssenceModal isOpen={isOpen} onOpen={onOpen} onOpenChange={onOpenChange}>
@@ -101,11 +98,10 @@ const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
                                 </div>
                             </label>
                         </div>
-                     
-                            <p className="text-center text-gray-700 text-sm mt-2">
-                                 <span className='text-coral-400'>{ file && file.name || ""}</span>
-                            </p>
-                   
+
+                        <p className="text-center text-gray-700 text-sm mt-2">
+                            <span className='text-coral-400'>{file ? file.name : ''}</span>
+                        </p>
                     </div>
 
                     <Button onClick={handleFileUpload} startContent={<CloudUpload />} className='bg-coral-50 my-3 mx-12 text-coral-400'>Upload</Button>

@@ -4,9 +4,10 @@ import { useDropzone } from 'react-dropzone';
 import { Avatar, Button, useDisclosure } from '@nextui-org/react';
 import { Camera, CloudUpload, File } from 'lucide-react';
 import EssenceModal from '@/components/Shared/Modal/Modal';
-import { config } from '../../../../../config';
+
 import { useGetMyProfileQuery, useUpdateProfileMutation } from '@/redux/api/userApi';
 import { toast } from 'sonner';
+import { config } from '@/config/config';
 
 interface IImageUploadFormProps { }
 

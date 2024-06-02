@@ -16,9 +16,7 @@ const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
     const [file, setFile] = useState<File | null>(null);
     const [updateProfile]  = useUpdateProfileMutation()
     const {data:profile,isLoading} = useGetMyProfileQuery({})
-    if(isLoading){
-        return <></>
-    }
+   
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
@@ -34,6 +32,11 @@ const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+
+    if (isLoading) {
+        return <></>
+    }
 
     const handleFileUpload = async () => {
         if (!file) {

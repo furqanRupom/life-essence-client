@@ -15,7 +15,8 @@ const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
     const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
     const [file, setFile] = useState<File | null>(null);
     const [updateProfile]  = useUpdateProfileMutation()
-    const {data:profile,isLoading} = useGetMyProfileQuery({})
+    const {data:profile,isLoading} = useGetMyProfileQuery({});
+  
    
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

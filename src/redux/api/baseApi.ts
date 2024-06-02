@@ -6,7 +6,7 @@ import { axiosBaseQuery } from "@/helpers/axios/axiosBaseQuery";
 export const baseApi = createApi({
     reducerPath: "baseApi",
     baseQuery: axiosBaseQuery({
-        baseUrl:"http://localhost:5000/api"
+        baseUrl:"https://blood-donate-three.vercel.app/api"
     }),
     endpoints: () => ({}),
     tagTypes:['user','donor']

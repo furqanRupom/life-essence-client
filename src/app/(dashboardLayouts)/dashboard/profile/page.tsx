@@ -27,7 +27,7 @@ const ProfilePage: React.FunctionComponent<IProfilePageProps> = (props) => {
   return (
     <section className="bg-gray-100  px-5">
       <div className="pt-12 px-5 pb-5">
-        <BreadcrumbsTitle routes={['dashboard', 'user', 'profile']} />
+        <BreadcrumbsTitle routes={['dashboard', 'profile']} />
         <h3 className='text-2xl text-default-600 font-semibold py-3'>My Profile</h3>
         {
           !isLoading ? (

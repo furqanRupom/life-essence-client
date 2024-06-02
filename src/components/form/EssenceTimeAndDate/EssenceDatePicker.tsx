@@ -11,14 +11,15 @@ interface IEssenceInputProps {
   type?: any;
   isRequired?: boolean;
   label?:string;
+  defaultValue?:any;
 
 
 }
 
-const EssenceDatePicker: React.FunctionComponent<IEssenceInputProps> = ({ name, size, type, placeholder, styleProps, isRequired,label }) => {
+const EssenceDatePicker: React.FunctionComponent<IEssenceInputProps> = ({ name, size, type, placeholder, styleProps, isRequired,label,defaultValue }) => {
   const { control } = useFormContext();
   return <Controller name={name} control={control} render={({ field }) => (
-    <DatePicker  style={{
+    <DatePicker defaultValue={defaultValue}  style={{
       ...styleProps,
       background: "transparent",
       outline: "none"

@@ -26,6 +26,29 @@ const userApi = baseApi.injectEndpoints({
             query:() => ({
                 url:"/my-profile",
                 method:"GET"
+            }),
+            providesTags:['user']
+        }),
+        updateProfile : build.mutation({
+            query:(data) => ({
+                   url:"/my-profile",
+                   method:"PUT",
+                   data
+            }),
+            invalidatesTags:['user']
+        }),
+        updateSocialProfile:build.mutation({
+            query:(data) => ({
+                url:"/update-social-profile",
+                method:"PUT",
+                data
+            })
+        }),
+        changePassword: build.mutation({
+            query:(data) => ({
+                url:"/change-password",
+                method:"PATCH",
+                data
             })
         })
 
@@ -33,4 +56,4 @@ const userApi = baseApi.injectEndpoints({
 })
 
 
-export const { useRegistrationMutation, useLoginMutation,useGetMyProfileQuery } = userApi;
+export const { useRegistrationMutation, useLoginMutation,useGetMyProfileQuery,useUpdateProfileMutation,useUpdateSocialProfileMutation,useChangePasswordMutation } = userApi;

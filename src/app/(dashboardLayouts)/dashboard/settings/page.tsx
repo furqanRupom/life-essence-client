@@ -6,6 +6,7 @@ import EssenceInput from "@/components/form/EssenceInput/EssenceInput";
 import GeneralForm from "./components/GeneralForm";
 import SocialForm from "./components/SocialForm";
 import BreadcrumbsTitle from "@/components/dashboard/breadcrumbs/BreadCrumbsTitle";
+import ImageUploadForm from "./components/ImageUploadForm";
 
 
 
@@ -17,7 +18,7 @@ const SettingsPage = () => {
 
       <div className="flex flex-col lg:flex-row gap-6 py-12">
         {/* Left Section */}
-       
+
        <SocialForm />
 
         <GeneralForm />

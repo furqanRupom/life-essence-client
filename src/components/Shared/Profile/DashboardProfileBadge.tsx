@@ -8,6 +8,7 @@ import { authKey } from '@/constants/constant';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { logoutUser } from '@/utils/auth/logoutUser';
+import { useGetMyProfileQuery } from '@/redux/api/userApi';
 
 interface IProfileBadgeProps {
   
@@ -20,19 +21,20 @@ const DashboardProfileBadge: React.FunctionComponent<IProfileBadgeProps> = () =>
        logoutUser(router);
     }
     const user = decodeToken() as JwtPayloadWithRole;
-    const role = user?.role?.toLocaleLowerCase()
+    const { data: profile, isLoading } = useGetMyProfileQuery({});
 
 
     return (
         <Dropdown>
             <DropdownTrigger>
                 <Avatar
-                
+                    isBordered
                     as="button"
                     className="transition-transform"
+                    color="danger"
                     name="Jason Hughes"
-                    size="md"
-                    src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                    size="sm"
+                    src={profile?.image || "https://i.pravatar.cc/150?u=a042581f4e29026704d"}
                 />
             </DropdownTrigger>
             <DropdownMenu aria-label="Profile Actions" variant="flat">

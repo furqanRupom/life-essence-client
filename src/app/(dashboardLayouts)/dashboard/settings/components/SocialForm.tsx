@@ -8,6 +8,7 @@ import { WhatsappLogo } from 'phosphor-react';
 import * as React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
+import ImageUploadForm from './ImageUploadForm';
 
 interface ISocialFormProps {
 }
@@ -39,14 +40,9 @@ const SocialForm: React.FunctionComponent<ISocialFormProps> = (props) => {
 
     }
     return <div className="lg:w-1/3 bg-white shadow-md rounded-md p-4">
+        <ImageUploadForm />
         <EssenceForm onSubmit={handleSocialForm} defaultValues={socialProfileDefaultValues}>
-            <div className="flex flex-col items-center mb-6">
-                <Avatar
-                    className="w-24 h-24 rounded-full mb-4"
-                    alt="Profile"
-                />
-                <Button  startContent={<Camera className='text-coral-400' />} className="bg-coral-50 text-coral-400 font-semibold px-4 py-2 rounded-md"> Change picture</Button>
-            </div>
+            
 
             <div className="mb-6">
                 <h4 className="text-md font-medium mb-2">Social accounts</h4>

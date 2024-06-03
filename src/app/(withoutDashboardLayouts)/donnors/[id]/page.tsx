@@ -37,7 +37,7 @@ const DonorsDetailsPage: React.FunctionComponent<IDonorsDetailsPageProps> = ({ p
                                     />
                                 ) : (
                                     <Avatar
-                                        src='https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg'
+                                            src='https://img.freepik.com/premium-vector/happy-smiling-young-man-avatar-3d-portrait-man-cartoon-character-people-vector-illustration_653240-187.jpg'
                                         className='w-48 h-48 bg-coral-50 rounded-full text-coral-400 mb-4'
                                     />
                                 )}
@@ -51,7 +51,7 @@ const DonorsDetailsPage: React.FunctionComponent<IDonorsDetailsPageProps> = ({ p
                                     </Chip>
                                 </div>
                                 <Divider className="my-2" />
-                                <div className="w-full px-4">
+                                <div className="w-full ">
                                     <p className="text-md text-gray-700 flex items-center mb-2">
                                         <MailCheck className="w-5 h-5 mr-2" />
                                         <strong className='text-default-500'>Email : </strong> <span className='ml-1'> {details.email}</span>

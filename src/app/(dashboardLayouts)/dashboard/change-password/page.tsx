@@ -20,19 +20,21 @@ const ChangePassword: React.FunctionComponent<IChangePasswordProps> = (props) =>
     const router = useRouter()
     const handleChangePassword = async (values: FieldValues) => {
         if (values.oldPassword !== values.confirmPassword) {
-            setError("Passwords did not match.");
+            setError("Password confirmation does not match");
             return;
         }
+
+        const toastId = toast.loading('Changing password. Hang on,please...')
         try {
             const response = await changePassword({ oldPassword: values.oldPassword, newPassword: values.newPassword }).unwrap();
             if (response.id) {
-                toast.success("Password changed. Logging out for security reason");
+                toast.success("Password changed.Logging out for security",{id:toastId});
                 logoutUser(router);
             } else {
                 toast.error("Invalid current password. Try again.");
             }
         } catch (error: any) {
-            toast.error(`Error changing password: ${error.message}`);
+            toast.error(`Error changing password: ${error.message}`,{id:toastId});
         }
     };
   return <section className='py-5 px-8'>

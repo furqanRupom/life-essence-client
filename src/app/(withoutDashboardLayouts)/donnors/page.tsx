@@ -2,14 +2,15 @@
 import Banner from '@/components/reusable/Banner';
 import { useDonorListQuery } from '@/redux/api/bloodsApi';
 import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Divider,  Avatar, Badge, Input, Select, SelectItem, Chip, Spinner } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Divider,  Avatar, Badge, Input, Select, SelectItem, Chip, Spinner, Button } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
 import { IDonor } from '@/interfaces/interfaces';
 import { IbloodGroup, makeBloodGroups } from '@/utils/bloodGroup/bloodGroup';
-import { Droplet, LoaderIcon, Search } from 'lucide-react';
+import { Droplet, LoaderIcon, MapPin, Search } from 'lucide-react';
 import { BloodGroups, availabilites } from '@/constants/constant';
 import Link from 'next/link';
 import EssenceLoader from '@/components/Shared/Loader/Loader';
+import useDebounce from '@/lib/hooks/useDebounce';
 
 interface IDonorsPageProps { }
 
@@ -29,7 +30,8 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
   if (bloodType) query.bloodType = bloodType;
   if (location) query.location = location;
   if (availability) query.availability = availability;
-  if (searchTerm) query.searchTerm = searchTerm;
+  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  if (debouncedSearchTerm) query.searchTerm = debouncedSearchTerm;
 
   const { data, isLoading } = useDonorListQuery(query);
   const donors = data?.donnors;
@@ -62,7 +64,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className=""
-            placeholder="Search Donor by name"
+            placeholder="Search Donor"
           />
           <Select
             value={bloodType}
@@ -90,40 +92,58 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
             <section className='grid grid-cols-1 py-20 lg:grid-cols-3 gap-5'>
               {donorsData?.map((donor) => (
                 <div key={donor.id}>
-                  <Card className="shadow-lg rounded-lg overflow-hidden transition duration-500 ease-in-out ">
-                    <CardHeader className="flex items-center gap-3 p-4 bg-gray-100">
-                      <Avatar
-                        src={donor.image || 'https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg'}
-                        className='w-20 h-20 rounded-3xl'
-                      />
-                      <div className="flex flex-col ">
-                        <p className="text-lg font-semibold pl-1">{donor.name}</p>
-                        <p className="text-sm text-gray-500 pl-1 pb-1">{donor.email}</p>
-                        {/* @ts-ignore */}
-                        <Chip size='sm' color={donor.availability == true ? 'success' :'danger'} variant="flat">
-                          {/* @ts-ignore */}
-                          {donor.availability == true ? "Available" : "Unavailable"}
-                        </Chip>
+                  <div className=" ">
+                    {/* Card start */}
+                    <div className="max-w-sm mx-auto bg-white dark:bg-gray-900 overflow-hidden shadow-md my-3 p-4 rounded-3xl">
+                      <div className=" ">
+                        <div className="text-center my-4">
+                          <img
+                            className="h-48 w-48 rounded-full border-4 border-coral-400 object-cover mx-auto my-4"
+                            src={donor.image || "https://img.freepik.com/premium-vector/happy-smiling-young-man-avatar-3d-portrait-man-cartoon-character-people-vector-illustration_653240-187.jpg"}
+                            alt=""
+                          />
+                          <div className="py-2">
+                            <Chip className={`text-default-50 ${donor.availability ? 'bg-success-400' : 'bg-coral-400'}`} size='sm'  >
+                              {donor.availability ? "Available" : "Unavailable"}
+                            </Chip>
+                            <h3 className="font-bold text-2xl text-gray-800 dark:text-white my-2">
+                              {donor?.name}
+                            </h3>
+
+                            <h3 className="font-semibold text-sm text-default-600  py-1">
+                              {donor?.email}
+                            </h3>
+                            <div className="flex text-default-600  space-x-3 items-center justify-center">
+                              <h3 className='flex '> <span><MapPin size={20} /></span>
+                                <span>{donor?.location}</span></h3>
+                              <div className='h-4 w-[0.11rem] bg-default-600'></div>
+
+
+                              {/* @ts-ignore */}
+                              <h3 className='flex '><span><Droplet size={20} /> </span> <span className=''>{makeBloodGroups(donor?.bloodType)}</span></h3>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div className="flex gap-2 px-2 justify-center">
+                          <Link href={`/donnors/${donor.id}`}>
+                            <Button className="bg-coral-50 uppercase font-semibold text-coral-400">
+                              Details
+                            </Button>
+                          </Link>
+                          <Link href={`/donnors/blood-request/${donor.id}`}>
+                            <Button className="bg-coral-50 uppercase font-semibold text-coral-400">
+                              Request
+                            </Button>
+                          </Link>
+
+                        </div>
                       </div>
-                    </CardHeader>
-                    <Divider />
-                    <CardBody className="p-4">
-                      <p className="text-md text-gray-700"><strong>Location :</strong> {donor.location}</p>
-                      <p className="text-md text-coral-400 flex py-1 items-center">
-                        <Droplet className="text-coral-400 mr-2  " />
-                        <p className='text-xl font-semibold mt-1'>{makeBloodGroups(donor.bloodType as IbloodGroup)}</p>
-                      </p>
-                    </CardBody>
-                    <Divider />
-                    <CardFooter className="p-4">
-                      <Link
-                        href={`/donnors/${donor.id}`}
-                        className="text-coral-400 hover:underline"
-                      >
-                        View Full Profile
-                      </Link>
-                    </CardFooter>
-                  </Card>
+
+                    </div>
+                    {/* Card end */}
+                  </div>
+
                 </div>
               ))}
             </section>

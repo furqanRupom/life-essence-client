@@ -27,15 +27,16 @@ const SocialForm: React.FunctionComponent<ISocialFormProps> = (props) => {
         whatsApp: userData?.socialMediaMethods?.whatsApp || ""
     }
     const handleSocialForm = async (values:FieldValues) => {
+        const toastid = toast.loading('Updating your social details...')
 
        try {
         const response = await updateSocialProfile(values);
 
         if(response){
-            toast.success("update social methods successfully")
+            toast.success("Social details updated successfully",{id:toastid})
         }
        } catch (error:any) {
-           toast.success(error?.message)
+           toast.success(error?.message,{id:toastid})
        }
 
     }

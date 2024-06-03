@@ -5,7 +5,7 @@ interface ILoadingProps {
 }
 
 const Loading: React.FunctionComponent<ILoadingProps> = (props) => {
-  return <section className='absolute w-full h-full inset-0 bg-coral-50'>
+  return <section className='absolute w-full h-full z-[60] inset-0 bg-coral-50'>
 
    <EssenceLoader />
   </section>;

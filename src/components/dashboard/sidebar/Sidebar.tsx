@@ -21,12 +21,11 @@ const Sidebar: React.FunctionComponent<ISidebarProps> = ({ isSidebarOpen, setIsS
     const user = decodeToken() as JwtPayloadWithRole;
     const sidebarMenus = SidebarGenerator(user?.role || "user");
     const pathname = usePathname();
-    console.log(pathname)
 
     return (
         <div className="z-50 h-full min-h-screen  border border-coral-50">
             <nav
-                className={`fixed h-full inset-y-0 bg-coral-50 bg-opacity-25 lg:bg-opacity-10 backdrop-blur-sm left-0 transform ${isSidebarOpen ? 'translate-x-0 md:relative duration-500' : '-translate-x-full duration-500'} transition-transform duration-500 lg:relative lg:translate-x-0 ease-in-out min-w-[300px] md:min-w-[250px] `}
+                className={`fixed h-full inset-y-0 bg-coral-50 bg-opacity-60 lg:bg-opacity-10 backdrop-blur-sm left-0 transform ${isSidebarOpen ? 'translate-x-0 md:relative duration-500' : '-translate-x-full duration-500'} transition-transform duration-500 lg:relative lg:translate-x-0 ease-in-out min-w-[300px] md:min-w-[250px] `}
             >
                 <div className="flex p-4 items-center">
                     <Image src={logo} width={30} height={30} alt="logo" />

@@ -4,7 +4,6 @@ import { NextResponse } from 'next/server';
 export const POST = async (req: Request) => {
     const data = await req.formData();
     const file = data.get('file');
-    console.log(file);
 
     if (!file) {
         return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -12,7 +11,6 @@ export const POST = async (req: Request) => {
 
     const formData = new FormData();
     formData.append('image', file as Blob);
-    console.log({ api_key: process.env.API_KEY })
 
     try {
         const response = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.API_KEY}`, {

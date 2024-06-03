@@ -62,16 +62,17 @@ const GeneralForm: React.FunctionComponent<IGeneralFormProps> = (props) => {
         emergencyPhoneNumber: userData?.emergencyPhoneNumber || 0
     }
     const handleGeneralInfo = async (values:FieldValues) => {
+        const toastId = toast.loading('Profile update ongoing...')
         values.lastDonationDate = moment(new Date(values?.lastDonationDate)).format('L');
         values.age = Number(values.age);
            try {
             const response = await updateProfile(values).unwrap();
             if(response){
-                toast.success('Profile update successfully !');
+                toast.success('Profile update successfully !',{id:toastId});
                 router.refresh();
             }
            } catch (error:any) {
-              toast.error(error?.message)
+              toast.error(error?.message,{id:toastId})
            }
     }
     return <div className="lg:w-2/3 bg-white shadow-md rounded-md p-4">
@@ -85,7 +86,7 @@ const GeneralForm: React.FunctionComponent<IGeneralFormProps> = (props) => {
                             <EssenceInput name="name" label="name" type="text" size='sm' />
                         </div>
                         <div>
-                            <EssenceInput name="email" label="email" type="text" size='sm' />
+                            <EssenceInput isReadOnly name="email" label="email" type="text" size='sm' />
                         </div>
                         <div>
                             <EssenceInput name="age" label="age" type="text" size='sm' />

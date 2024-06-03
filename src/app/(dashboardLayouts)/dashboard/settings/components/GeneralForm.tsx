@@ -33,11 +33,13 @@ interface IGeneralFormProps {
 */
 
 const formatToShow = (date:string) => {
-    if(!date){
+    if(!date || date.length == 0){
         return '2024-06-03'
     }
-    const decodedDate = date?.split('/');
-
+    const decodedDate = date?.split('/') || moment(new Date()).format('L').split('/');
+    if (!decodedDate || decodedDate.length !== 3) {
+        return '2024-06-03'
+    }
     const month = decodedDate[0].padStart(2, '0');
     const day = decodedDate[1].padStart(2, '0');
     const year = decodedDate[2];

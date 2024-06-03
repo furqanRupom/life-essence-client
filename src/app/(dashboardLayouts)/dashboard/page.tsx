@@ -6,11 +6,18 @@ import * as React from 'react';
 interface IDashboardHomePageProps {
 }
 import dynamic from 'next/dynamic';
+import { decodeToken } from '@/utils/jwt/jwtDecode';
+import AdminHome from '@/components/dashboard/pages/admin/AdminHome';
+import { JwtPayloadWithRole } from '@/interfaces/interfaces';
 const UserHomePage = dynamic(() => import('@/components/dashboard/pages/user/UserHome'), { ssr: false });
 const DashboardHomePage: React.FunctionComponent<IDashboardHomePageProps> = (props) => {
+
+  const user = decodeToken() as JwtPayloadWithRole;
   return <>
 
-  <UserHomePage />
+  {
+    user?.role === 'ADMIN' ? <AdminHome /> : <UserHomePage />
+  }
   </>;
 };
 

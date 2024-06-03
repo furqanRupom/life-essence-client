@@ -2,6 +2,8 @@ import React from 'react';
 import EventCard from './EventCard';
 import { Button } from '@nextui-org/react';
 import Title from '@/components/reusable/Title';
+import loadingGif from "../../../assets/gif/loading.gif"
+import Image from 'next/image';
 
 const events = [
     {
@@ -34,6 +36,7 @@ const events = [
 const EventSection: React.FC = () => {
     return (
         <section className="bg-gray-100 py-8">
+         
             <div className="container mx-auto px-4">
                 <Title firstTitle='Event' secondTitle='Blood donation event' />
                 <div className="flex flex-wrap justify-center">

@@ -50,10 +50,35 @@ const userApi = baseApi.injectEndpoints({
                 method:"PATCH",
                 data
             })
+        }),
+        allUsers: build.query({
+          query:() => ({
+                url: "/users",
+                methood: "GET"
+          }),
+          providesTags:['donor','user']
+        }),
+        toggleUser : build.mutation({
+            query:(args) => {
+                console.log(args)
+                return {
+                    url: `/user/${args.id}`,
+                    method: "PATCH",
+                    data: args.data
+                }
+            },
+           invalidatesTags:['donor','user']
         })
+        , metaData: build.query({
+            query: () => ({
+                url: "/admin/meta",
+                methood: "GET"
+            }),
+            providesTags: ['donor', 'user']
+        }),
 
     })
 })
 
 
-export const { useRegistrationMutation, useLoginMutation,useGetMyProfileQuery,useUpdateProfileMutation,useUpdateSocialProfileMutation,useChangePasswordMutation } = userApi;
+export const { useRegistrationMutation, useLoginMutation,useGetMyProfileQuery,useUpdateProfileMutation,useUpdateSocialProfileMutation,useChangePasswordMutation ,useAllUsersQuery,useToggleUserMutation,useMetaDataQuery } = userApi;

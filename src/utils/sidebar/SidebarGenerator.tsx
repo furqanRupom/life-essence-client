@@ -10,7 +10,6 @@ const  userRole  = {
 export const SidebarGenerator = (values: Role) => {
     const role =  values.toLowerCase();
     let SidebarLinks: { name: string; route: string; icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; }[] = [];
-
     switch (role) {
         case userRole.ADMIN:
             SidebarLinks = [
@@ -19,16 +18,7 @@ export const SidebarGenerator = (values: Role) => {
                     route: "/dashboard",
                     icon: Shapes
                 },
-                {
-                    name: "Blood management",
-                    route: `/dashboard/${role}/blood-management`,
-                    icon: Library
-                },
-                {
-                    name: "User management",
-                    route: `/dashboard/${role}/user-management`,
-                    icon: Users
-                }
+               
             ];
             break;
 

@@ -33,6 +33,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
 
   const { data, isLoading } = useDonorListQuery(query);
   const donors = data?.donnors;
+
   const meta = data?.meta;
   const totalPages = Math.ceil((meta?.total || 1) / limit);
 
@@ -92,8 +93,8 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
                   <Card className="shadow-lg rounded-lg overflow-hidden transition duration-500 ease-in-out ">
                     <CardHeader className="flex items-center gap-3 p-4 bg-gray-100">
                       <Avatar
-                        src={'https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg'}
-                        className='w-16 h-16 rounded-full'
+                        src={donor.image || 'https://www.shutterstock.com/image-vector/young-smiling-man-avatar-brown-600nw-2261401207.jpg'}
+                        className='w-20 h-20 rounded-3xl'
                       />
                       <div className="flex flex-col ">
                         <p className="text-lg font-semibold pl-1">{donor.name}</p>

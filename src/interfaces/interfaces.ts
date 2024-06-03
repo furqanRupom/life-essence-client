@@ -16,6 +16,7 @@ export interface IDonor {
     id: string;
     name:string;
     email: string;
+    image:string;
     location: string;
     bloodType: string;
     availability: string;

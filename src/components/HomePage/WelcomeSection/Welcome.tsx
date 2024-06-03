@@ -3,6 +3,7 @@ import { Button, Image } from '@nextui-org/react';
 import { ArrowDownRightFromSquare } from 'lucide';
 import { ArrowDownRightFromSquareIcon, ArrowUpRightFromSquare } from 'lucide-react';
 import Link from 'next/link';
+import loadingGif from "@/assets/gif/loading.gif"
 import * as React from 'react';
 
 interface IWelcomeSectionProps {
@@ -11,6 +12,7 @@ interface IWelcomeSectionProps {
 const WelcomeSection: React.FunctionComponent<IWelcomeSectionProps> = (props) => {
     return (
         <section className='max-w-7xl mx-auto mt-16 mb-8'>
+           
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-center py-16 lg:pt-0 lg:pb-0">
                
                 <div className="relative flex order-2 z-20 flex-col items-start w-full max-w-xl px-4 mx-auto md:px-0 lg:px-8 lg:max-w-screen-xl">

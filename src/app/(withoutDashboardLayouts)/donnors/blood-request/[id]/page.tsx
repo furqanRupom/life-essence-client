@@ -19,6 +19,8 @@ import { useRouter } from 'next/navigation';
 import * as React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
+import FormSkleton from '../formSkeleton/FormSkeleton';
+
 
 interface IBloodRequestPageProps {
     params:{
@@ -30,18 +32,17 @@ const BloodRequestPage: React.FunctionComponent<IBloodRequestPageProps> = (props
     const router = useRouter();
     const { data: profileData, isLoading: ProfileLoading } = useGetMyProfileQuery({});
     const [donationRequest, { isLoading: requestLoading }] = useDonationRequestMutation();
-    if(!isLoggedIn){
+    const loggedIn = isLoggedIn();
+
+  
+    if(!loggedIn){
         router.push('/signin')
-        return <></>
     }
 
     
  
 
-    if(ProfileLoading){
-        return <EssenceLoader />
-    }
-
+    
 
 
 
@@ -51,7 +52,6 @@ const BloodRequestPage: React.FunctionComponent<IBloodRequestPageProps> = (props
          bloodType: (profileData?.bloodType) || "",
          location:profileData?.location || ""
     }
-    console.log(defaultRequestValues)
     const handleBloodRequest = async (values:FieldValues) => {
         values.dateOfDonation = moment(new Date(values.dateOfDonation)).format('L');
         values.timeOfDonation = moment(values.timeOfDonation).format('LT');
@@ -70,55 +70,57 @@ const BloodRequestPage: React.FunctionComponent<IBloodRequestPageProps> = (props
   return <>
   <Banner title='blood request' subTitle='blood Request'  />
   <Title firstTitle='Request' secondTitle='Blood Request' />
-    <section className='max-w-5xl mx-auto py-10'>
-          <EssenceForm onSubmit={handleBloodRequest} defaultValues={defaultRequestValues}>
+    {
+          !ProfileLoading ? <section  className='max-w-5xl mx-auto py-10'>
+              <EssenceForm onSubmit={handleBloodRequest} defaultValues={defaultRequestValues}>
 
-              <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
-                  <EssenceInput isReadOnly  isRequired={true} size='sm' name='name' type="text"  />
-                  <EssenceInput isReadOnly  isRequired={true} size='sm' name='email' type="email"  />
-              </div>
+                  <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
+                      <EssenceInput isReadOnly isRequired={true} size='sm' name='name' type="text" />
+                      <EssenceInput isReadOnly isRequired={true} size='sm' name='email' type="email" />
+                  </div>
 
-              <Spacer y={5} />
-
-          
-
-             
-
-           
-
-              <EssenceSelect isReadOnly defaultValues={defaultRequestValues.bloodType}  size='sm' name='bloodType' label="blood group" menuItems={BloodGroups} />
-              <Spacer y={5} />
-
-              <EssenceInput isReadOnly  isRequired={true} size='sm' name='location' type="text" />
-
-              <Spacer y={5} />
-
-              <EssenceInput isRequired={true} size='sm' name='reason' type="text" />
-              <Spacer y={5} />
-              <EssenceInput isRequired={true} size='sm' label='Phone Number' name='phoneNumber' type="number" />
-              <Spacer y={5} />
-              <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
-                  <EssenceDatePicker label='select date' isRequired={true} size='sm' name='dateOfDonation' type="date" />
-                  <EssenceTimePicker label='select time' isRequired={true} size='sm' name='timeOfDonation' type="date" />
-              </div>
+                  <Spacer y={5} />
 
 
-              <Spacer y={5} />
-
-              <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
-                  <EssenceInput isRequired={true} size='sm' label='Hospital Name' name='hospitalName' type="text" />
-                  <EssenceInput isRequired={true} size='sm' label='Hospital Address' name='hospitalAddress' type="text" />
-              </div>
-
-              <Spacer y={5} />
-
-            
 
 
-      
-              <Button spinner={<LoaderIcon className='animate-spin ' />} isLoading={requestLoading} size='lg' className='bg-coral-50 text-coral-400 w-full py-3 fon-bold text-2xl' type='submit'>Create Request</Button>
-          </EssenceForm>
-    </section>
+
+
+
+                  <EssenceSelect isReadOnly defaultValues={defaultRequestValues.bloodType} size='sm' name='bloodType' label="blood group" menuItems={BloodGroups} />
+                  <Spacer y={5} />
+
+                  <EssenceInput isReadOnly isRequired={true} size='sm' name='location' type="text" />
+
+                  <Spacer y={5} />
+
+                  <EssenceInput isRequired={true} size='sm' name='reason' type="text" />
+                  <Spacer y={5} />
+                  <EssenceInput isRequired={true} size='sm' label='Phone Number' name='phoneNumber' type="number" />
+                  <Spacer y={5} />
+                  <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
+                      <EssenceDatePicker label='select date' isRequired={true} size='sm' name='dateOfDonation' type="date" />
+                      <EssenceTimePicker label='select time' isRequired={true} size='sm' name='timeOfDonation' type="date" />
+                  </div>
+
+
+                  <Spacer y={5} />
+
+                  <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 '>
+                      <EssenceInput isRequired={true} size='sm' label='Hospital Name' name='hospitalName' type="text" />
+                      <EssenceInput isRequired={true} size='sm' label='Hospital Address' name='hospitalAddress' type="text" />
+                  </div>
+
+                  <Spacer y={5} />
+
+
+
+
+
+                  <Button spinner={<LoaderIcon className='animate-spin ' />} isLoading={requestLoading} size='lg' className='bg-coral-50 text-coral-400 w-full py-3 fon-bold text-2xl' type='submit'>Create Request</Button>
+              </EssenceForm>
+          </section > : <FormSkleton />
+    }
   </>;
 };
 

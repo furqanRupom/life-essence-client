@@ -42,7 +42,8 @@ const userApi = baseApi.injectEndpoints({
                 url:"/update-social-profile",
                 method:"PUT",
                 data
-            })
+            }),
+            invalidatesTags: ['user']
         }),
         changePassword: build.mutation({
             query:(data) => ({

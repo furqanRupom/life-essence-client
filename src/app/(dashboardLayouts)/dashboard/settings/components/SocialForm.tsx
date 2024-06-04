@@ -32,7 +32,7 @@ const SocialForm: React.FunctionComponent<ISocialFormProps> = (props) => {
         const toastid = toast.loading('Updating your social details...')
 
        try {
-        const response = await updateSocialProfile(values).unwrap();
+        const response = await updateSocialProfile(values);
 
         if(response){
             toast.success("Social details updated successfully",{id:toastid})

@@ -16,7 +16,7 @@ const camby = Baloo_Bhai_2({
 })
 
 export const metadata: Metadata = {
-  title: "Life Essence | Home",
+  title: "Life Essence ",
   description: "Life Essence for humaity for save lives",
 };
 

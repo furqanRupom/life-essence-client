@@ -65,11 +65,12 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
               background: "transparent"
             }}
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            onBlur={() => setSearchTerm(debouncedSearchTerm)}
+            onChange={(e) => setSearchTerm(e.target.value)} // Trigger search on change
+            onBlur={() => setSearchTerm(debouncedSearchTerm)} // Trigger search on blur
             className=""
             placeholder="Search Donor"
           />
+
           <Select
             value={bloodType}
             placeholder='Select Blood Group'
@@ -139,17 +140,14 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
                           <Link href={`/donnors/blood-request/${donor.id}`}>
                             <Button className="bg-coral-50 uppercase font-semibold text-coral-400">
                               Request
-                            </Button>
+                            </Button
+                            >
                           </Link>
-
                         </div>
-
                       </div>
-
                     </div>
                     {/* Card end */}
                   </div>
-
                 </div>
               ))}
             </section>

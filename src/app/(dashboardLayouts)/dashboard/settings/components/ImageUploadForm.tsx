@@ -98,12 +98,10 @@ const ImageUploadForm: React.FunctionComponent<IImageUploadFormProps> = () => {
                                 </div>
                             </label>
                         </div>
-
                         <p className="text-center text-gray-700 text-sm mt-2">
                             <span className='text-coral-400'>{file ? file.name : ''}</span>
                         </p>
                     </div>
-
                     <Button onClick={handleFileUpload} startContent={<CloudUpload />} className='bg-coral-50 my-3 mx-12 text-coral-400'>Upload</Button>
                 </div>
             </EssenceModal>

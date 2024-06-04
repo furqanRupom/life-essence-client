@@ -11,7 +11,6 @@ import EssenceLoader from '@/components/Shared/Loader/Loader';
 import useDebounce from '@/lib/hooks/useDebounce';
 import Title from '@/components/reusable/Title';
 
-
 interface IDonorsPageProps { }
 
 const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
@@ -23,22 +22,21 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
     const [donorsData, setDonorsData] = React.useState<IDonor[]>([]);
     const [searchTerm, setSearchTerm] = React.useState<string>('');
 
-    const query: { page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string } = {
-        page,
-        limit,
-    };
-    if (bloodType) query.bloodType = bloodType;
-    if (location) query.location = location;
-    if (availability) query.availability = availability;
-
-    // Debounce the search term
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
-    if (debouncedSearchTerm) query.searchTerm = debouncedSearchTerm;
+    const [query, setQuery] = React.useState<{ page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string }>({ page, limit });
+
+    React.useEffect(() => {
+        const newQuery: { page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string } = { page, limit };
+        if (bloodType) newQuery.bloodType = bloodType;
+        if (location) newQuery.location = location;
+        if (availability) newQuery.availability = availability;
+        if (debouncedSearchTerm) newQuery.searchTerm = debouncedSearchTerm;
+
+        setQuery(newQuery);
+    }, [page, limit, bloodType, location, availability, debouncedSearchTerm]);
 
     const { data, isLoading } = useDonorListQuery(query);
     const donors = data?.donnors;
-
-
 
     React.useEffect(() => {
         if (donors) setDonorsData(donors);
@@ -65,10 +63,10 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
                         }}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
+                        onBlur={() => setSearchTerm(debouncedSearchTerm)}
                         className=""
                         placeholder="Search Donor"
                     />
-
                 </div>
 
                 {
@@ -106,7 +104,6 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
                                                                 <span>{donor?.location}</span></h3>
                                                             <div className='h-4 w-[0.11rem] bg-default-600'></div>
 
-
                                                             {/* @ts-ignore */}
                                                             <h3 className='flex '><span><Droplet size={20} /> </span> <span className=''>{makeBloodGroups(donor?.bloodType)}</span></h3>
                                                         </div>
@@ -124,24 +121,18 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
                                                             Request
                                                         </Button>
                                                     </Link>
-
                                                 </div>
                                             </div>
-
                                         </div>
                                         {/* Card end */}
                                     </div>
-
                                 </div>
                             ))}
                         </section>
-
                     </>
                 ) : (
                     <EssenceLoader />
                 )}
-
-
             </div>
         </div>
     );

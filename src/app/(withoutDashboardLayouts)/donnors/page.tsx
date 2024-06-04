@@ -2,7 +2,7 @@
 import Banner from '@/components/reusable/Banner';
 import { useDonorListQuery } from '@/redux/api/bloodsApi';
 import * as React from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Divider,  Avatar, Badge, Input, Select, SelectItem, Chip, Spinner, Button } from "@nextui-org/react";
+import { Card, CardHeader, CardBody, CardFooter, Divider, Avatar, Badge, Input, Select, SelectItem, Chip, Spinner, Button } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
 import { IDonor } from '@/interfaces/interfaces';
 import { IbloodGroup, makeBloodGroups } from '@/utils/bloodGroup/bloodGroup';
@@ -22,26 +22,29 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
   const [availability, setAvailability] = React.useState<string>('');
   const [donorsData, setDonorsData] = React.useState<IDonor[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>('');
+  const [query, setQuery] = React.useState<{ page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string }>({ page, limit });
 
-  const query: { page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string } = {
-    page,
-    limit,
-  };
-  if (bloodType) query.bloodType = bloodType;
-  if (location) query.location = location;
-  if (availability) query.availability = availability;
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  if (debouncedSearchTerm) query.searchTerm = debouncedSearchTerm;
+
+  React.useEffect(() => {
+    const newQuery: { page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string } = { page, limit };
+    if (bloodType) newQuery.bloodType = bloodType;
+    if (location) newQuery.location = location;
+    if (availability) newQuery.availability = availability;
+    if (debouncedSearchTerm) newQuery.searchTerm = debouncedSearchTerm;
+
+    setQuery(newQuery);
+  }, [page, limit, bloodType, location, availability, debouncedSearchTerm]);
 
   const { data, isLoading } = useDonorListQuery(query);
   const donors = data?.donnors;
-
   const meta = data?.meta;
   const totalPages = Math.ceil((meta?.total || 1) / limit);
 
   React.useEffect(() => {
     if (donors) setDonorsData(donors);
   }, [donors]);
+
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };
@@ -63,6 +66,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
             }}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onBlur={() => setSearchTerm(debouncedSearchTerm)}
             className=""
             placeholder="Search Donor"
           />
@@ -70,13 +74,14 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
             value={bloodType}
             placeholder='Select Blood Group'
             onChange={(e) => setBloodType(e.target.value)}
+            onBlur={() => setBloodType(bloodType)}
             size='lg'
           >
             {BloodGroups.map((blood: { name: string, value: string }) => <SelectItem key={blood.name} value={blood.name}>
               {blood.value}
             </SelectItem>)}
           </Select>
-          <Select size='lg' placeholder='Choose availability' onChange={(e) => setAvailability(e.target.value)}>
+          <Select size='lg' placeholder='Choose availability' onChange={(e) => setAvailability(e.target.value)} onBlur={() => setAvailability(availability)}>
             {availabilites.map((avil: { name: string, value: string }) => <SelectItem key={avil.name} value={avil.name}>
               {avil.value}
             </SelectItem>)}
@@ -90,7 +95,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
         {!isLoading ? (
           <>
             <section className='grid grid-cols-1 py-20 lg:grid-cols-3 gap-5'>
-              {donorsData?.map((donor) => (
+              {donorsData?.map((donor: any) => (
                 <div key={donor.id}>
                   <div className=" ">
                     {/* Card start */}
@@ -138,6 +143,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
                           </Link>
 
                         </div>
+
                       </div>
 
                     </div>
@@ -160,10 +166,8 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
             </div>
           </>
         ) : (
-           <EssenceLoader />
+          <EssenceLoader />
         )}
-
-       
       </div>
     </>
   );

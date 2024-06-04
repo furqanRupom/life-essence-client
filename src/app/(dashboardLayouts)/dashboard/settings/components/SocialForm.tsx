@@ -9,6 +9,7 @@ import * as React from 'react';
 import { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
 import ImageUploadForm from './ImageUploadForm';
+import { useRouter } from 'next/navigation';
 
 interface ISocialFormProps {
 }
@@ -16,6 +17,7 @@ interface ISocialFormProps {
 const SocialForm: React.FunctionComponent<ISocialFormProps> = (props) => {
     const { data: userData, isLoading } = useGetMyProfileQuery({});
     const [updateSocialProfile] = useUpdateSocialProfileMutation();
+    const router = useRouter();
     if(isLoading){
         return <></>
     }
@@ -34,6 +36,7 @@ const SocialForm: React.FunctionComponent<ISocialFormProps> = (props) => {
 
         if(response){
             toast.success("Social details updated successfully",{id:toastid})
+            router.refresh();
         }
        } catch (error:any) {
            toast.success(error?.message,{id:toastid})

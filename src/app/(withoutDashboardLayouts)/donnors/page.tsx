@@ -22,10 +22,8 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
   const [availability, setAvailability] = React.useState<string>('');
   const [donorsData, setDonorsData] = React.useState<IDonor[]>([]);
   const [searchTerm, setSearchTerm] = React.useState<string>('');
-  const [query, setQuery] = React.useState<{ page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string }>({ page, limit });
-
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-
+  const [query, setQuery] = React.useState<{ page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string }>({ page, limit });
   React.useEffect(() => {
     const newQuery: { page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string } = { page, limit };
     if (bloodType) newQuery.bloodType = bloodType;
@@ -65,8 +63,8 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
               background: "transparent"
             }}
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} // Trigger search on change
-            onBlur={() => setSearchTerm(debouncedSearchTerm)} // Trigger search on blur
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onBlur={() => setSearchTerm(debouncedSearchTerm)}
             className=""
             placeholder="Search Donor"
           />

@@ -32,11 +32,10 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
     if (availability) query.availability = availability;
 
     // Debounce the search term
-    const debouncedSearchTerm = useDebounce(searchTerm, 300);
+    const debouncedSearchTerm = useDebounce(searchTerm, 500);
     if (debouncedSearchTerm) query.searchTerm = debouncedSearchTerm;
 
     const { data, isLoading } = useDonorListQuery(query);
-    console.log(data)
     const donors = data?.donnors;
 
 

@@ -30,7 +30,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
   if (bloodType) query.bloodType = bloodType;
   if (location) query.location = location;
   if (availability) query.availability = availability;
-  const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
   if (debouncedSearchTerm) query.searchTerm = debouncedSearchTerm;
 
   const { data, isLoading } = useDonorListQuery(query);

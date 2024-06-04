@@ -54,7 +54,7 @@ const userApi = baseApi.injectEndpoints({
         allUsers: build.query({
           query:() => ({
                 url: "/users",
-                methood: "GET"
+                method: "GET"
           }),
           providesTags:['donor','user']
         }),
@@ -72,7 +72,7 @@ const userApi = baseApi.injectEndpoints({
         , metaData: build.query({
             query: () => ({
                 url: "/admin/meta",
-                methood: "GET"
+                method: "GET"
             }),
             providesTags: ['donor', 'user']
         }),

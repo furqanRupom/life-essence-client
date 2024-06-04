@@ -1,6 +1,7 @@
 "use client";
 
 import EventSection from "@/components/HomePage/Event/EventSection";
+import DonationTips from "@/components/HomePage/Extra/DonationTips";
 import Hero from "@/components/HomePage/Hero/Hero";
 import InfoSection from "@/components/HomePage/Info/InfoSection";
 import RecentDonors from "@/components/HomePage/RecentDonors/RecentDonors";
@@ -16,6 +17,7 @@ export default function Home() {
       <InfoSection />
       <RecentDonors />
       <ServicesSection />
+      <DonationTips />
       <EventSection />
       <TestiMonialsSection />
 

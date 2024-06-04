@@ -47,7 +47,7 @@ const SignIn: React.FunctionComponent<ISignUpPageProps> = (props) => {
     
         <EssenceInput isRequired={true} size='sm' name='email' type="email" placeholder='Enter your email' />
         <Spacer y={6}/>
-        <EssenceInput isRequired={true} size='sm' name='password' type="password" placeholder='Enter your password' />
+        <EssenceInput hasPasswordToggle isRequired={true} size='sm' name='password' type="password" placeholder='Enter your password' />
       <Spacer y={6} />
        
       <p className='text-right'>New to Life Essence please <Link className='hover:underline text-coral-500' href="/signup">Sign Up</Link></p>

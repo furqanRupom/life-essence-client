@@ -64,7 +64,7 @@ const SignUpPage: React.FunctionComponent<ISignUpPageProps> = (props) => {
             <Spacer y={5} />
 
 
-            <EssenceInput isRequired={true} size='sm' name='password' type="password" placeholder='Enter your password' />
+            <EssenceInput hasPasswordToggle isRequired={true} size='sm' name='password' type="password" placeholder='Enter your password' />
             <Spacer y={5} />
 
             <EssenceSelect isRequired={true} size='sm' name='bloodGroup' label="blood group" placeholder='Select your blood group' menuItems={BloodGroups} />

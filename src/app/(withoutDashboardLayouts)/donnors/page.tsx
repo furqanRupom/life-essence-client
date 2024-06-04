@@ -25,23 +25,16 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
   const [query, setQuery] = React.useState<{ page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string }>({ page, limit });
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
-  const debouncedBloodType = useDebounce(bloodType, 300); // Debounce bloodType state
-  const debouncedAvailability = useDebounce(availability, 300); // Debounce availability state
 
   React.useEffect(() => {
     const newQuery: { page: number, limit: number, bloodType?: string, location?: string, availability?: string, searchTerm?: string } = { page, limit };
-    if (debouncedBloodType) newQuery.bloodType = debouncedBloodType; // Use debounced value
+    if (bloodType) newQuery.bloodType = bloodType;
     if (location) newQuery.location = location;
-    if (debouncedAvailability) newQuery.availability = debouncedAvailability; // Use debounced value
+    if (availability) newQuery.availability = availability;
     if (debouncedSearchTerm) newQuery.searchTerm = debouncedSearchTerm;
 
-    // Filter out empty string properties
-    const filteredQuery = Object.fromEntries(
-      Object.entries(newQuery).filter(([_, v]) => v !== '')
-    );
-  //  @ts-ignore
-    setQuery(filteredQuery);
-  }, [page, limit, debouncedBloodType, location, debouncedAvailability, debouncedSearchTerm]);
+    setQuery(newQuery);
+  }, [page, limit, bloodType, location, availability, debouncedSearchTerm]);
 
   const { data, isLoading } = useDonorListQuery(query);
   const donors = data?.donnors;
@@ -90,11 +83,11 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
           </Select>
           <Select size='lg' placeholder='Choose availability' onChange={(e) => setAvailability(e.target.value)} onBlur={() => setAvailability(availability)}>
             {availabilites.map((avil: { name: string, value: string }) => <SelectItem key={avil.name} value={avil.name}>
-              {avil
-                .value}
+              {avil.value}
             </SelectItem>)}
           </Select>
         </div>
+
         {
           donors?.length === 0 && <h3 className='text-center py-5 text-4xl font-bold text-coral-400'>No Donors Found</h3>
         }
@@ -138,8 +131,7 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
                           </div>
                         </div>
                         <div className="flex gap-2 px-2 justify-center">
-                          <Link href
-                            ={`/donnors/${donor.id}`}>
+                          <Link href={`/donnors/${donor.id}`}>
                             <Button className="bg-coral-50 uppercase font-semibold text-coral-400">
                               Details
                             </Button>
@@ -149,10 +141,15 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
                               Request
                             </Button>
                           </Link>
+
                         </div>
+
                       </div>
+
                     </div>
+                    {/* Card end */}
                   </div>
+
                 </div>
               ))}
             </section>

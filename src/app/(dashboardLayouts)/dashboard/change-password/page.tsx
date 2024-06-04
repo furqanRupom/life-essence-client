@@ -28,7 +28,7 @@ const ChangePassword: React.FunctionComponent<IChangePasswordProps> = (props) =>
         try {
             const response = await changePassword({ oldPassword: values.oldPassword, newPassword: values.newPassword }).unwrap();
             if (response.id) {
-                toast.success("Password changed.Logging out for security",{id:toastId});
+                toast.success("Password changed. Logging out !",{id:toastId});
                 logoutUser(router);
             } else {
                 toast.error("Invalid current password. Try again.");

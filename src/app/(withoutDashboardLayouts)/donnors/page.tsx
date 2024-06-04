@@ -35,7 +35,12 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
     if (debouncedAvailability) newQuery.availability = debouncedAvailability; // Use debounced value
     if (debouncedSearchTerm) newQuery.searchTerm = debouncedSearchTerm;
 
-    setQuery(newQuery);
+    // Filter out empty string properties
+    const filteredQuery = Object.fromEntries(
+      Object.entries(newQuery).filter(([_, v]) => v !== '')
+    );
+  //  @ts-ignore
+    setQuery(filteredQuery);
   }, [page, limit, debouncedBloodType, location, debouncedAvailability, debouncedSearchTerm]);
 
   const { data, isLoading } = useDonorListQuery(query);
@@ -85,11 +90,11 @@ const DonorsPage: React.FunctionComponent<IDonorsPageProps> = (props) => {
           </Select>
           <Select size='lg' placeholder='Choose availability' onChange={(e) => setAvailability(e.target.value)} onBlur={() => setAvailability(availability)}>
             {availabilites.map((avil: { name: string, value: string }) => <SelectItem key={avil.name} value={avil.name}>
-              {avil.value}
+              {avil
+                .value}
             </SelectItem>)}
           </Select>
         </div>
-
         {
           donors?.length === 0 && <h3 className='text-center py-5 text-4xl font-bold text-coral-400'>No Donors Found</h3>
         }

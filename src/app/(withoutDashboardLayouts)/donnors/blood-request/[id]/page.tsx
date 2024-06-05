@@ -34,17 +34,6 @@ const BloodRequestPage: React.FunctionComponent<IBloodRequestPageProps> = (props
     const [donationRequest, { isLoading: requestLoading }] = useDonationRequestMutation();
     const loggedIn = isLoggedIn();
 
-  
-    if(!loggedIn){
-        router.push('/signin')
-    }
-
-    
- 
-
-    
-
-
 
     const defaultRequestValues = {
          name:profileData?.name || "",

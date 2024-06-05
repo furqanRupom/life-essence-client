@@ -25,13 +25,17 @@ const SignIn: React.FunctionComponent<ISignUpPageProps> = (props) => {
   const handleRegisterSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("Almost there, signing you in now...")
     try {
-      const response = await userLogin(data).unwrap();
-      if(response.accessToken){
+      const response = await userLogin(data);
+      console.log(response)
+    
+      if(response.data?.accessToken){
         toast.success("You're in! Let's get started.",{id:toastId})
-        setLocalStorage(authKey,response.accessToken);
-        setAccessToken(response.accessToken as string, {
+        setLocalStorage(authKey,response.data?.accessToken);
+        setAccessToken(response.data?.accessToken as string, {
           redirect: "/dashboard"
         })
+      }else {
+        toast.error("Invalid email or password",{id:toastId})
       }
       
     } catch (error:any) {
@@ -39,7 +43,7 @@ const SignIn: React.FunctionComponent<ISignUpPageProps> = (props) => {
     }
   
   }
-  return <section className=' min-h-screen max-w-2xl capitalize mx-auto py-20 lg:py-40'>
+  return <section className=' min-h-screen max-w-2xl capitalize mx-auto py-20 lg:py-40 px-8 md:px-0'>
     <Title firstTitle='welcome back' secondTitle='Sign In ' />
 
     <EssenceForm onSubmit={handleRegisterSubmit}>

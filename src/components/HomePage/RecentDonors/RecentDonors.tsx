@@ -75,7 +75,7 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
 
                 {!isLoading ? (
                     <>
-                        <section className='grid grid-cols-1 py-20 lg:grid-cols-3 gap-5'>
+                        <section className='grid grid-cols-1 py-20 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                             {donorsData?.map((donor) => (
                                 <div key={donor.id}>
                                     <div className=" ">

@@ -51,7 +51,7 @@ const SignUpPage: React.FunctionComponent<ISignUpPageProps> = (props) => {
             toast.error(error.message)
         }
     }
-    return <section className=' min-h-screen max-w-2xl capitalize mx-auto py-20'>
+    return <section className=' min-h-screen max-w-2xl capitalize mx-auto py-20 px-8 md:px-0'>
         <Title firstTitle='welcome to Life Essence' secondTitle='Sign Up now' />
 
         <EssenceForm onSubmit={handleRegisterSubmit}>

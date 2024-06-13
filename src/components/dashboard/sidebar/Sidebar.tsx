@@ -28,8 +28,8 @@ const Sidebar: React.FunctionComponent<ISidebarProps> = ({ isSidebarOpen, setIsS
                 className={`fixed h-full inset-y-0 bg-coral-50 bg-opacity-60 lg:bg-opacity-10 backdrop-blur-sm left-0 transform ${isSidebarOpen ? 'translate-x-0 md:relative duration-500' : '-translate-x-full duration-500'} transition-transform duration-500 lg:relative lg:translate-x-0 ease-in-out min-w-[300px] md:min-w-[250px] `}
             >
                 <div className="flex p-4 items-center">
-                    <Image src={logo} width={30} height={30} alt="logo" />
-                    <p className="font-bold text-xl text-coral-400 mt-1">Life Essence</p>
+                    <Link className="flex" href="/"> <Image src={logo} width={30} height={30} alt="logo" />
+                        <p className="font-bold text-xl text-coral-400 mt-1">Life Essence</p></Link>
                     <Button onClick={() => setIsSidebarOpen(!isSidebarOpen)} size="sm" isIconOnly className="bg-coral-400 text-coral-50 ml-auto lg:hidden"><X /></Button>
                 </div>
                 <Divider />

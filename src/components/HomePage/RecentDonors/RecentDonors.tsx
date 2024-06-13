@@ -111,7 +111,7 @@ const RecentDonors: React.FunctionComponent<IDonorsPageProps> = (props) => {
                                                     </div>
                                                 </div>
                                                 <div className="flex gap-2 px-2 justify-center">
-                                                    <Link href={`/donnors/${donor.id}`}>
+                                                    <Link href={`/donnors/details/${donor.id}`}>
                                                         <Button className="bg-coral-50 uppercase font-semibold text-coral-400">
                                                             Details
                                                         </Button>

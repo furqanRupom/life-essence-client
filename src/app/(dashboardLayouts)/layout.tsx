@@ -16,7 +16,6 @@ const DashboardLayout: React.FunctionComponent<IDashboardLayoutProps> = ({ child
     <div className='flex-grow'>
       <DashboardNavbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
       <div>
-
         {children}
       </div>
     </div>

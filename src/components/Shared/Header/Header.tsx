@@ -97,9 +97,12 @@ export default function App() {
 
 
             <NavbarContent className="lg:hidden pr-3" >
-                <NavbarBrand className="flex ">
-                    <Image src={logo} width={30} height={30} alt="logo" />
-                    <p className="font-bold text-xl text-coral-400 ">Life Essence</p>
+                <NavbarBrand >
+                    <Link className="flex items-center" href="/">
+                        <Image src={logo} width={30} height={30} alt="logo" />
+                        <p className="font-bold text-2xl text-coral-400 ">Life Essence</p>
+                    </Link>
+                 
 
                 </NavbarBrand>
             </NavbarContent>
@@ -120,7 +123,7 @@ export default function App() {
             </NavbarContent>
             <NavbarContent  justify="center" className="hidden lg:block">
                 <NavbarBrand className="flex mt-2">
-                    <Image src={logo} width={30} height={30} alt="logo" />
+                    <Image className="mt-1" src={logo} width={30} height={30} alt="logo" />
                     <p  className="font-extrabold text-3xl text-coral-400  mt-2">Life Essence</p>
                 </NavbarBrand>
             </NavbarContent>

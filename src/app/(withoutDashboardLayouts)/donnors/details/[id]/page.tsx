@@ -8,7 +8,8 @@ import { IbloodGroup, makeBloodGroups } from '@/utils/bloodGroup/bloodGroup';
 import { MailCheck, Droplet, LocateIcon, Phone, PhoneCall, Facebook, Instagram, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import EssenceLoader from '@/components/Shared/Loader/Loader';
-import DonorDetailsSkeleton from '../skeleton/donorDetailsSkeleton';
+import DonorDetailsSkeleton from '../../skeleton/donorDetailsSkeleton';
+
 
 interface IDonorsDetailsPageProps {
     params: string
@@ -16,7 +17,7 @@ interface IDonorsDetailsPageProps {
 
 const DonorsDetailsPage: React.FunctionComponent<IDonorsDetailsPageProps> = ({ params }) => {
     const { data: details, isLoading, error } = useDonorDetailsQuery(params);
-    const router = useRouter();
+
 
     return (
         <>
